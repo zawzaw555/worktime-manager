@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
+<head>
+</head>
+<body>
+	<div th:fragment="leave-content">
+    	<div class="worker-wrapper">
+    		<div class="card work-action-card">
+				<div class="card-body">
+					<form method="post" th:object="${selectedWorker}">
+						<div class="work-action-header">
+							<p>打刻</p>
+							<h4>退勤登録</h4>
+						</div>
+						<div class="input-group work-form">
+							<div class="input-label">
+								<label for="leaveName">社員名</label>
+							</div>
+							<div class="input-control">
+								<input type="text" th:field="*{name}" id="leaveName" readonly>
+							</div>
+							<div class="input-label">
+								<label for="leaveWorkerNo">社員番号</label>
+							</div>
+							<div class="input-control">
+								<input type="text" th:field="*{workerNo}" id="leaveWorkerNo" readonly>
+							</div>
+							<input type="hidden" th:field="*{workerId}">
+							<div class="input-label">
+								<label for="leavePassword">パスワード</label>
+							</div>
+							<div class="input-control">
+								<input type="password" name="password" id="leavePassword">
+							</div>
+							<div class="work-submit">
+								<button type="submit"
+										th:formaction="@{/worker/checkout}"
+										class="btn btn-work btn-work-end">
+									退勤
+								</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+    	</div>
+    </div>
+</body>
+</html>

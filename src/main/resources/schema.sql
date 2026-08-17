@@ -1,13 +1,21 @@
+DROP TABLE IF EXISTS break_time;
 DROP TABLE IF EXISTS work_time;
 DROP TABLE IF EXISTS worker;
+DROP TABLE IF EXISTS common_login;
+
+CREATE TABLE common_login (
+	id BIGINT AUTO_INCREMENT PRIMARY KEY,
+	user_id VARCHAR(50) NOT NULL UNIQUE,
+	password VARCHAR(255) NOT NULL,
+	role varchar(20) NOT NULL
+);
 
 CREATE TABLE worker (
 	id BIGINT AUTO_INCREMENT PRIMARY KEY,
-	employee_no VARCHAR(20) NOT NULL UNIQUE,
+	worker_no VARCHAR(20) NOT NULL UNIQUE,
 	name VARCHAR(100) NOT NULL,
 	email VARCHAR(255) NOT NULL UNIQUE,
-	password VARCHAR(255) NOT NULL,
-	role VARCHAR(20) NOT NULL
+	password VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE work_time (
@@ -20,9 +28,17 @@ CREATE TABLE work_time (
 	
 	CONSTRAINT fk_work_time_worker
 		FOREIGN KEY (worker_id)
-		REFERENCES worker(id),
-		
-	CONSTRAINT uq_worker_check_date
-		UNIQUE (worker_id, check_date)
+		REFERENCES worker(id)
+);
+
+CREATE TABLE break_time (
+	id BIGINT AUTO_INCREMENT PRIMARY KEY,
+	work_time_id BIGINT NOT NULL,
+	break_start DATETIME NOT NULL,
+	break_end DATETIME,
+	
+		CONSTRAINT fk_break_work_time
+			FOREIGN KEY (work_time_id)
+			REFERENCES work_time(id)
 );
 	

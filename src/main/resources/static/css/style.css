@@ -1,30 +1,289 @@
+/*logiin*/
 .login-wrapper {
 	display: flex;
 	justify-content: center;
-	min-height: 75vh;
+	align-items: center;
+	min-height: 80vh;
+}
+.input-group {
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+}
+.login-wrapper .input-group {
+	width: 250px;
+}
+.input-label {
+	text-align: left;
+	font-size: 18px;
+	padding-left: 20px;
+}
+.input-control input {
+	 box-sizing: border-box;
+	 width: 80%;
+
+	 padding: 6px;
+
+	 border: 2px solid rgb(151, 151, 151);
+	 border-radius: 5px;
+}
+
+/*worker attend*/
+.worker-page {
+	padding: 32px 0 48px;
+	text-align: left;
+}
+.worker-page-title {
+	margin-bottom: 28px;
+	text-align: center;
+}
+.worker-page-title p,
+.work-action-header p,
+.attendance-header p {
+	margin: 0;
+	color: #6b7280;
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: 0;
+	text-transform: uppercase;
+}
+.worker-page-title h1 {
+	margin: 4px 0 0;
+	color: #18212f;
+	font-size: 32px;
+	font-weight: 600;
+}
+.worker-dashboard {
+	display: grid;
+	grid-template-columns: minmax(300px, 0.7fr) minmax(280px, 400px);
+	gap: 24px;
+	justify-content: center;
+	align-items: start;
+}
+.worker-wrapper {
+	display: flex;
+	justify-content: center;
 	align-items: center;
 }
+.worker-wrapper .card {
+	width: 100%;
+}
+.work-action-card {
+	border: 1px solid #d9e2ec;
+	border-radius: 8px;
+	box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+}
+.work-action-card .card-body {
+	padding: 28px;
+}
+.work-action-header {
+	margin-bottom: 22px;
+	text-align: left;
+}
+.work-action-header h4 {
+	margin: 4px 0 0;
+	color: #18212f;
+	font-size: 24px;
+	font-weight: 600;
+}
+.work-error {
+	display: block;
+	margin-bottom: 12px;
+	color: #dc2626;
+	font-weight: 700;
+}
+.worker-wrapper .work-form {
+	width: 100%;
+	box-sizing: border-box;
+	gap: 8px;
+}
+.worker-wrapper .input-label {
+	margin-bottom: 5px;
+	padding-left: 0;
+	text-align: left;
+}
+.worker-wrapper .input-label label {
+	color: #334155;
+	font-size: 14px;
+	font-weight: 700;
+}
+.worker-wrapper input {
+	 box-sizing: border-box;
+	 width: 100%;
 
-.input-control {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+	 padding: 10px 12px;
+
+	 border: 1px solid #b8c4d2;
+	 border-radius: 6px;
+	 background-color: #fff;
+}
+.worker-wrapper input:focus {
+	border-color: #2563eb;
+	box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14);
+	outline: none;
+}
+.worker-wrapper input[readonly] {
+	background-color: #f3f6f9;
+	color: #475569;
+}
+.work-submit {
+	margin-top: 16px;
+}
+.btn-work,
+.btn-break,
+.btn-leave-link {
+	border: 0;
+	border-radius: 6px;
+	font-weight: 800;
+}
+.btn-work {
+	width: 100%;
+	padding: 12px 16px;
+	font-size: 17px;
+}
+.btn-work-start {
+	background-color: #17634c;
+	color: #fff;
+}
+.btn-work-start:hover {
+	background-color: #0f513f;
+	color: #fff;
+}
+.btn-work-end {
+	background-color: #9f2d2d;
+	color: #fff;
+}
+.btn-work-end:hover {
+	background-color: #842525;
+	color: #fff;
 }
 
-.input-control label {
-    width: 140px;
-    box-sizing: border-box;
-    text-align: left;
-    font-size: 18px;
-    padding: 6px 10px;
-    margin-bottom: 10px;
-    background-color: rgb(113, 176, 222);
-    border-radius: 5px;
+/*worker table*/
+.attendance-panel {
+	box-sizing: border-box;
+	border: 1px solid #d9e2ec;
+	border-radius: 8px;
+	background-color: #fff;
+	box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+	overflow: hidden;
+}
+.attendance-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 16px;
+	padding: 24px 26px;
+	background-color: #f6f8fb;
+	border-bottom: 1px solid #e5edf5;
+}
+.attendance-header h4 {
+	margin: 4px 0 0;
+	color: #18212f;
+	font-size: 22px;
+	font-weight: 600;
+}
+.attendance-count {
+	display: flex;
+	align-items: baseline;
+	gap: 4px;
+	color: #17634c;
+}
+.attendance-count span {
+	font-size: 34px;
+	font-weight: 900;
+	line-height: 1;
+}
+.attendance-count small {
+	font-size: 14px;
+	font-weight: 700;
+}
+.today-attend {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	padding: 18px;
+}
+.today-attend p{
+	text-align: center;
+}
+.attendance-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 14px;
+	padding: 12px 14px;
+	border: 1px solid #e5edf5;
+	border-radius: 8px;
+	background-color: #fff;
+}
+.worker-info {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	min-width: 0;
+}
+.worker-info a {
+	color: #18212f;
+	font-weight: 800;
+	text-decoration: none;
+}
+.worker-info a:hover {
+	color: #2563eb;
+}
+.worker-info span {
+	color: #64748b;
+	font-size: 13px;
+	font-weight: 700;
+}
+.attendance-empty {
+	padding: 24px 12px;
+	color: #64748b;
+	text-align: center;
+}
+.attendance-actions {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+.btn-break,
+.btn-leave-link {
+	min-width: 92px;
+	padding: 8px 12px;
+	white-space: nowrap;
+}
+.btn-leave-link {
+	background-color: #475569;
+	color: #fff;
+}
+.btn-leave-link:hover {
+	background-color: #334155;
+	color: #fff;
+}
+.btn-break-start {
+	background-color: #1f6feb;
+	color: #fff;
+}
+.btn-break-start:hover {
+	background-color: #1d5fc7;
+	color: #fff;
+}
+.btn-break-return {
+	background-color: #7c3aed;
+	color: #fff;
+}
+.btn-break-return:hover {
+	background-color: #6d28d9;
+	color: #fff;
 }
 
-.input-control input {
-    width: 200px;
-    height: 38px;
-    box-sizing: border-box;
-    margin-bottom: 10px;
+@media (max-width: 768px) {
+	.worker-dashboard {
+		grid-template-columns: 1fr;
+	}
+	.worker-page-title h1 {
+		font-size: 26px;
+	}
+	.attendance-header {
+		padding: 20px;
+	}
 }

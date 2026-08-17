@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
+<head>
+</head>
+<body>
+	<div th:fragment="attend-content">
+    	<div class="worker-wrapper">
+    		<div class="card work-action-card">
+				<div class="card-body">
+					<form th:action="@{/worker/checkin}" method="post">
+						<div class="work-action-header">
+							<p>打刻</p>
+							<h4>出勤登録</h4>
+						</div>
+						<span	th:if="${errorMessage}"
+								th:text="${errorMessage}"
+								class="work-error">
+						</span>
+						<div class="input-group work-form">
+							<div class="input-label">
+								<label for="attendanceWorkerNo">社員番号</label>
+							</div>
+							<div class="input-control">
+								<input type="text" name="workerNo" id="attendanceWorkerNo" placeholder="例: 1001">
+							</div>
+							<div class="input-label">
+								<label for="attendancePassword">パスワード</label>
+							</div>
+							<div class="input-control">
+								<input type="password" name="password" id="attendancePassword">
+							</div>
+							<div class="work-submit">
+								<button type="submit" class="btn btn-work btn-work-start">出勤</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+    	</div>
+    </div>
+</body>
+</html>

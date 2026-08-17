@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+<head>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="worker-page">
+		<div class="worker-page-title">
+			<p>Work Time Manager</p>
+			<h1>社員用勤怠ページ</h1>
+		</div>
+		<div class="worker-dashboard">
+			<section class="attendance-panel">
+				<div class="attendance-header">
+					<div>
+						<p>本日の状況</p>
+						<h4>出勤中の社員</h4>
+					</div>
+					<div class="attendance-count">
+						<span th:text="${workingCount}">0</span>
+						<small>人</small>
+					</div>
+				</div>
+				<div class="today-attend">
+					<div class="attendance-empty" th:if="${#lists.isEmpty(workingUsers)}">
+						現在、出勤中の社員はいません
+					</div>
+					<div class="attendance-row" th:each="worker : ${workingUsers}">
+						<div class="worker-info">
+							<a th:href="@{/worker/home/{id}(id=${worker.workerId})}" th:text="${worker.name}">社員名</a>
+							<span th:text="${#temporals.format(worker.checkIn, 'H:mm')}">9:00</span>
+						</div>
+						<div class="attendance-actions">
+							<a th:href="@{/worker/home/{id}(id=${worker.workerId})}" class="btn btn-leave-link">退勤へ</a>
+							<form th:if="${!worker.onBreak}"
+								  th:action="@{/worker/break-start}"
+								  method="post">
+								<input type="hidden"
+								   name="workerId"
+								   th:value="${worker.workerId}">
+								<button type="submit" class="btn btn-break btn-break-start">
+									休憩
+								</button>
+							</form>
+							<form th:if="${worker.onBreak}"
+								  th:action="@{/worker/break-end}"
+								  method="post">
+								<input type="hidden"
+								   name="workerId"
+								   th:value="${worker.workerId}">
+								<button type="submit" class="btn btn-break btn-break-return">
+									休憩戻り
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="work-panel" th:if="${mode == 'attendance'}">
+				<div th:replace="~{parts/attendance :: attend-content}"></div>
+			</section>
+			<section class="work-panel" th:if="${mode == 'leave'}">
+				<div th:replace="~{parts/leave :: leave-content}"></div>
+			</section>
+		</div>
+		</div>
+	</div>
+</body>
+</html>
