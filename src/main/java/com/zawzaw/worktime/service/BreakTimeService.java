@@ -18,29 +18,20 @@ public class BreakTimeService {
 	
 	public boolean breakStart(Long workerId) {
 		
-		System.out.println("workerId = " + workerId);
-		
 		EWorkTime working = workTimeMapper.selectWorking(workerId);
 		
-		System.out.println("working = " + working);
 		
 		if (working == null) {
-			System.out.println("出勤データなし");
 			return false;
 		}
 		
 		EBreakTime activeBreak = breakTimeMapper.selectBreakTime(working.getId());
 		
-		System.out.println("activeBreak = " + activeBreak);
-		
 		if (activeBreak != null) {
-			System.out.println("すでに休憩中");
 			return false;
 		}
 		
-		int result = breakTimeMapper.insertBreakStart(working.getId());
-		
-		System.out.println("insert result = " + result);
+		breakTimeMapper.insertBreakStart(working.getId());
 		
 		return true;
 	}

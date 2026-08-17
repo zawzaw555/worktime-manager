@@ -30,7 +30,7 @@
 					<div class="attendance-row" th:each="worker : ${workingUsers}">
 						<div class="worker-info">
 							<a th:href="@{/worker/home/{id}(id=${worker.workerId})}" th:text="${worker.name}">社員名</a>
-							<span th:text="${#temporals.format(worker.checkIn, 'H:mm')}">9:00</span>
+							<span th:text="${#temporals.format(worker.checkIn, 'H:mm')}"></span>
 						</div>
 						<div class="attendance-actions">
 							<a th:href="@{/worker/home/{id}(id=${worker.workerId})}" class="btn btn-leave-link">退勤へ</a>
