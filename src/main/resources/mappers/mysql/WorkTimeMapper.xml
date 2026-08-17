@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zawzaw.worktime.mapper.WorkTimeMapper">
+	<resultMap type="com.zawzaw.worktime.model.entity.EWorkTime" id="workTimeResultMap">
+		<id column="id" property="id"/>
+		<result column="worker_id" property="workerId"/>
+		<result column="check_date" property="checkDate"/>
+		<result column="check_in" property="checkIn"/>
+		<result column="check_out" property="checkOut"/>
+	</resultMap>
+	
+	<select id="findTodayWorkingUsers"
+			resultType="com.zawzaw.worktime.model.dto.WorkingUserDto">
+		
+		SELECT
+			wt.worker_id AS workerId,
+			w.worker_no AS workerNo,
+			w.name AS name,
+			wt.check_in AS checkIn,
+			
+			CASE
+				WHEN bt.id IS NOT NULL THEN TRUE
+				ELSE FALSE
+			END AS onBreak
+			
+		FROM work_time wt
+		
+		INNER JOIN worker w
+			ON wt.worker_id = w.id
+			
+		LEFT JOIN break_time bt
+			ON wt.id = bt.work_time_id
+			AND bt.break_end IS NULL
+			
+		WHERE wt.check_date = CURDATE()
+			AND wt.check_in IS NOT NULL
+			AND wt.check_out IS NULL
+			
+		ORDER BY wt.check_in
+	</select>
+	
+	<select id="findTodayWorkingUserById"
+			resultType="com.zawzaw.worktime.model.dto.WorkingUserDto">
+		
+		SELECT
+			wt.worker_id AS workerId,
+			w.worker_no AS workerNo,
+			w.name AS name,
+			wt.check_in AS checkIn
+			
+		FROM work_time wt
+		
+		INNER JOIN worker w
+			ON wt.worker_id = w.id
+			
+		WHERE wt.worker_id = #{id}
+		    AND wt.check_date = CURDATE()
+			AND wt.check_in IS NOT NULL
+			AND wt.check_out IS NULL
+	</select>
+	
+	<select id="findWorkerIdByWorkerNo"
+			resultType="java.lang.Long">
+		SELECT id
+		FROM worker
+		WHERE worker_no = #{workerNo}
+	</select>
+	
+	<select	id="findWorkerByWorkerNo"
+			resultType="com.zawzaw.worktime.model.entity.EWorker">
+		SELECT *
+		FROM worker
+		WHERE worker_no = #{workerNo}
+	</select>
+	
+	<insert id="insertCheckIn">
+		INSERT INTO work_time (
+			worker_id,
+			check_date,
+			check_in
+		)
+		VALUES (
+			#{workerId},
+			CURDATE(),
+			NOW()
+		)
+	</insert>
+	
+	<select id="selectWorking"
+			parameterType="long"
+			resultType="com.zawzaw.worktime.model.entity.EWorkTime">
+		SELECT *
+		FROM work_time
+		WHERE worker_id = #{workerId}
+			AND check_out IS NULL
+		ORDER BY check_in DESC
+		LIMIT 1
+	</select>
+	
+	<update id="updateCheckOut">
+		UPDATE work_time
+		SET check_out = NOW()
+		WHERE worker_id = #{workerId}
+			AND check_out IS NULL
+			ORDER BY check_in DESC
+			LIMIT 1;
+	</update>
+</mapper>

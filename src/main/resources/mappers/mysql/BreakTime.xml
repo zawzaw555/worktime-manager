@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zawzaw.worktime.mapper.BreakTimeMapper">
+    <resultMap type="com.zawzaw.worktime.model.entity.EBreakTime" id="breakTimeResultMap">
+    	<id column="id" property="id"/>
+    	<result column="work_time_id" property="workTimeId"/>
+    	<result column="break_start" property="breakStart"/>
+    	<result column="break_end" property="breakEnd"/>
+    </resultMap>
+    
+    <select id="selectBreakTime"
+    		resultMap="breakTimeResultMap">
+    	SELECT *
+    	FROM break_time
+    	WHERE work_time_id = #{workTimeId}
+    		AND break_end IS NULL
+    	ORDER BY break_start DESC
+    	LIMIT 1
+    </select>
+    
+    <insert id="insertBreakStart">
+    	INSERT INTO break_time (
+    		work_time_id,
+    		break_start
+    	)
+    	VALUES (
+    		#{workTimeId},
+    		NOW()
+    	)
+    </insert>
+    
+    <update id="updateBreakEnd">
+    	UPDATE break_time
+    	SET break_end = NOW()
+    	WHERE work_time_id = #{workTimeId}
+    		AND break_end IS NULL
+    	ORDER BY break_start DESC
+    	LIMIT 1
+    </update>
+</mapper>
