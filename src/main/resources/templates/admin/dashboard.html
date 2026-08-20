@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+<head>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="d-flex p-3 gap-4 home-wrapper">
+			<aside class="sidebar">
+				<ul>
+					<li>
+						<a th:href="@{/admin/home}">ホーム</a>
+					</li>
+					<li>
+						<a th:href="@{/admin/worker}">社員管理</a>
+					</li>
+					<li>
+						<a th:href="@{/admin/attendance}">勤怠管理</a>
+					</li>
+				</ul>
+			</aside>
+			<main class="container-fluid">
+				<section class="" th:if="${mode == 'home'}">
+					<div th:replace="~{parts/admin-home :: home-content}"></div>
+				</section>
+				<section class="" th:if="${mode == 'worker'}">
+					<div th:replace="~{parts/admin-worker :: worker-content}"></div>
+				</section>
+				<section class="" th:if="${mode == 'attendance'}">
+					<div th:replace="~{parts/admin-attendance :: attendance-content}"></div>
+				</section>
+			</main>
+		</div>
+	</div>
+</body>
+</html>

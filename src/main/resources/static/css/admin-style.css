@@ -1,0 +1,103 @@
+.home-wrapper {
+	display: flex;
+	min-height: 85vh;
+}
+.sidebar {
+	width: 260px;
+	padding: 20px;
+	border: 1px solid rgb(89, 94, 100);
+	border-radius: 6px;
+	background-color: rgb(224, 223, 252);
+	min-height: 83vh;
+}
+.sidebar ul{
+	list-style: none;
+	padding-left: 0;
+	margin: 0;
+}
+.sidebar a {
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+	font-size: 18px;
+	font-weight: 700;
+	text-align: center;
+	color: #334155;
+	text-decoration: none;
+	
+	padding: 6px;
+	margin-top: 8px 0;
+	
+	border: 1px solid transparent;
+	border-radius: 6px;
+}
+.sidebar a:hover {
+	border-color: rgb(22, 23, 24);
+	background-color: rgb(43, 175, 197);
+}
+
+main {
+	padding: 18px;
+	border: 1px solid rgb(95, 100, 106);
+	border-radius: 6px;
+	background-color: rgb(218, 217, 248);
+	min-height: 83vh;
+}
+.main-frame {
+	width: 100%;
+	padding: 10px;
+}
+.main-frame p{
+	margin: 0;
+	padding: 0;
+	text-align: start;
+}
+.main-frame h3{
+	text-align: start;
+	font-weight: 600;
+}
+.main-frame a{
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	
+	font-weight: 600;
+	font-size: 18px;
+	text-decoration: none;
+	color: black;
+	padding-bottom: 6px;
+}
+.main-frame span i{
+	font-weight: 700;
+	font-size: 28px;
+}
+.form-date {
+	display: flex;
+	justify-content: flex-start;
+	padding-bottom: 8px;
+}
+.home-table {
+	width: 100%;
+	border-collapse: collapse;
+	background-color: rgb(246, 246, 246);
+	border-radius: 8px;
+	overflow: hidden;
+}
+.home-table th{
+	padding: 8px 10px;
+	font-size: 18px;
+	text-align: center;
+	font-weight: 600;
+	border-bottom: 2px solid rgb(171, 171, 171);
+}
+.home-table td {
+	padding: 6px 10px;
+	text-align: center;
+	border-bottom: 1px solid rgb(40, 40, 40);
+}
+.home-table tbody tr:hover {
+	background-color: rgb(232, 232, 232);
+}
+.home-table tbody button:hover {
+	background-color: rgb(203, 203, 203);
+}

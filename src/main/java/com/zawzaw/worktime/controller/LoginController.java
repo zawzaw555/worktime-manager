@@ -44,7 +44,7 @@ public class LoginController {
 		}
 		session.setAttribute("loginUser", loginUser);
 		if ("ADMIN".equals(loginUser.getRole())) {
-			return "redirect:/admin/signup";
+			return "redirect:/admin/home";
 		}
 		if ("WORKER".equals(loginUser.getRole())) {
 			return "redirect:/worker/home";

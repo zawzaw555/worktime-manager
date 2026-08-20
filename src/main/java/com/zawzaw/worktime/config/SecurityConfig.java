@@ -23,7 +23,7 @@ public class SecurityConfig {
 					"/webjars/**"
 				).permitAll()
 				.requestMatchers("/worker/**").permitAll()
-				.requestMatchers("/admin/**").hasRole("ADMIN")
+				.requestMatchers("/admin/**").permitAll()
 					
 				.anyRequest().authenticated()
 			)

@@ -35,7 +35,7 @@ CREATE TABLE break_time (
 	id BIGINT AUTO_INCREMENT PRIMARY KEY,
 	work_time_id BIGINT NOT NULL,
 	break_start DATETIME NOT NULL,
-	break_end DATETIME,
+	break_end DATETIME NULL,
 	
 		CONSTRAINT fk_break_work_time
 			FOREIGN KEY (work_time_id)
