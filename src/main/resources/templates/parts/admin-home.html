@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title>Home</title>
+</head>
+<body>
+	<div th:fragment="home-content">
+		<div class="main-frame">
+			<p>本日の出勤人数 : <span>5</span>人</p>
+			<p>休憩中 : <span>1</span>人</p>
+			<p>退勤済み : <span>3</span>人</p>
+			<h5>本日の出勤状況</h5>
+			<table class="home-table">
+				<thead>
+					<tr>
+						<th>社員番号</th>
+						<th>社員名</th>
+						<th>状態</th>
+						<th>出勤時間</th>
+					</tr>
+				</thead>
+				<tbody>
+            		<tr>
+                		<td>W001</td>
+                		<td>山田</td>
+                		<td>出勤中</td>
+                		<td>09:00</td>
+            		</tr>
+            		<tr>
+                		<td>W002</td>
+                		<td>佐藤</td>
+                		<td>休憩中</td>
+                		<td>08:55</td>
+            		</tr>
+        		</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+</html>
