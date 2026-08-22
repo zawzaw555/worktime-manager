@@ -8,10 +8,16 @@
 <body>
 	<div th:fragment="attendance-content">
 		<div class="main-frame">
-			<h3>勤怠管理</h3>
+			<div class="admin-page-header">
+				<div>
+					<h3>勤怠管理</h3>
+				</div>
+			</div>
 			<form action="">
-				<div class="form-date">
-					日付 : <input type="date">
+				<div class="admin-toolbar">
+					<label>日付</label>
+					<input type="date">
+					<button type="button">表示</button>
 				</div>
 			</form>
 			<table class="home-table">
@@ -30,14 +36,14 @@
                 		<td>山田 太郎</td>
                 		<td>09:00</td>
                 		<td>01:00</td>
-                		<td>18:00</td>
+                		<td><span class="status-badge status-left">18:00</span></td>
             		</tr>
             		<tr>
                 		<td>W002</td>
                 		<td>佐藤 花子</td>
                 		<td>08:50</td>
                 		<td>01:00</td>
-                		<td> - </td>
+                		<td><span class="status-badge status-working">未退勤</span></td>
             		</tr>
         		</tbody>
 			</table>

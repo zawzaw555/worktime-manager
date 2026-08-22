@@ -22,4 +22,28 @@
 		FROM worker
 		WHERE worker_no = #{workerNo}
 	</select>
+	
+	<select id="findAll" resultMap="workerResultMap">
+		SELECT *
+		FROM worker
+		ORDER BY worker_no
+	</select>
+	
+	<select id="findTodayAttendance"
+			resultType="com.zawzaw.worktime.model.dto.TodayAttendanceDto">
+		SELECT
+			w.worker_no AS workerNo,
+			w.name AS workerName,
+			wt.check_in AS checkIn,
+			wt.check_out AS checkOut,
+			bt.break_start AS breakStart,
+			bt.break_end AS breakEnd
+		FROM work_time wt
+		JOIN worker w
+			ON wt.worker_id = w.id
+		LEFT JOIN break_time bt
+			ON bt.work_time_id = wt.id
+		WHERE wt.check_date =CURDATE()
+		ORDER BY wt.check_in
+	</select>
 </mapper>

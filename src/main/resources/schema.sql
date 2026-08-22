@@ -24,7 +24,6 @@ CREATE TABLE work_time (
 	check_date DATE NOT NULL,
 	check_in DATETIME,
 	check_out DATETIME,
-	/* break_minutes INT NOT NULL DEFAULT 60 */
 	
 	CONSTRAINT fk_work_time_worker
 		FOREIGN KEY (worker_id)
@@ -37,8 +36,8 @@ CREATE TABLE break_time (
 	break_start DATETIME NOT NULL,
 	break_end DATETIME NULL,
 	
-		CONSTRAINT fk_break_work_time
-			FOREIGN KEY (work_time_id)
-			REFERENCES work_time(id)
+	CONSTRAINT fk_break_work_time
+		FOREIGN KEY (work_time_id)
+		REFERENCES work_time(id)
 );
 	

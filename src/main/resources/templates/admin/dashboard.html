@@ -8,15 +8,18 @@
 	<div layout:fragment="content">
 		<div class="d-flex p-3 gap-4 home-wrapper">
 			<aside class="sidebar">
+				<div class="sidebar-title">
+					<h2>管理画面</h2>
+				</div>
 				<ul>
 					<li>
-						<a th:href="@{/admin/home}">ホーム</a>
+						<a th:href="@{/admin/home}" th:classappend="${mode == 'home'} ? ' active'">ホーム</a>
 					</li>
 					<li>
-						<a th:href="@{/admin/worker}">社員管理</a>
+						<a th:href="@{/admin/worker}" th:classappend="${mode == 'worker'} ? ' active'">社員管理</a>
 					</li>
 					<li>
-						<a th:href="@{/admin/attendance}">勤怠管理</a>
+						<a th:href="@{/admin/attendance}" th:classappend="${mode == 'attendance'} ? ' active'">勤怠管理</a>
 					</li>
 				</ul>
 			</aside>
