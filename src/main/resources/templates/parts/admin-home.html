@@ -8,10 +8,29 @@
 <body>
 	<div th:fragment="home-content">
 		<div class="main-frame">
-			<p>本日の出勤人数 : <span>5</span>人</p>
-			<p>休憩中 : <span>1</span>人</p>
-			<p>退勤済み : <span>3</span>人</p>
-			<h5>本日の出勤状況</h5>
+			<div class="admin-page-header">
+				<h3>ホーム</h3>
+			</div>
+			<div class="summary-grid">
+				<div class="summary-card">
+					<p>本日の出勤人数</p>
+					<strong th:text="${totalCount}"></strong>
+					<span>人</span>
+				</div>
+				<div class="summary-card summary-break">
+					<p>休憩中</p>
+					<strong th:text="${breakCount}"></strong>
+					<span>人</span>
+				</div>
+				<div class="summary-card summary-left">
+					<p>退勤済み</p>
+					<strong th:text="${checkedOutCount}"></strong>
+					<span>人</span>
+				</div>
+			</div>
+			<div class="table-title">
+				<h5>本日の出勤状況</h5>
+			</div>
 			<table class="home-table">
 				<thead>
 					<tr>
@@ -22,17 +41,38 @@
 					</tr>
 				</thead>
 				<tbody>
-            		<tr>
-                		<td>W001</td>
-                		<td>山田</td>
-                		<td>出勤中</td>
-                		<td>09:00</td>
-            		</tr>
-            		<tr>
-                		<td>W002</td>
-                		<td>佐藤</td>
-                		<td>休憩中</td>
-                		<td>08:55</td>
+            		<tr th:each="attendance : ${attendanceList}">
+                		<td th:text="${attendance.workerNo}"></td>
+                		<td th:text="${attendance.workerName}"></td>
+                		<td>
+                			<!-- 出勤中 -->
+                			<span class="status-badge status-working"
+                				  th:if="${attendance.checkOut == null
+                				  		   and (attendance.breakStart == null
+                				  		   or attendance.breakEnd != null)}">
+                				出勤中
+                			</span>
+                			<!-- 休憩中 -->
+                			<span class="status-badge status-break"
+                				  th:if="${attendance.checkOut == null
+                				  		   and (attendance.breakStart != null
+                				  		   and attendance.breakEnd == null)}">
+                				休憩中
+                			</span>
+                			<!-- 退勤済み -->
+                			<span class="status-badge status-left"
+                				  th:if="${attendance.checkOut != null}">
+                				退勤済み
+                			</span>
+                		</td>
+                		<td>
+                			<span th:if="${attendance.checkIn != null}"
+                				  th:text="${#temporals.format(attendance.checkIn,'HH:mm')}">
+                			</span>
+                			<span th:if="${attendance.checkOut == null}">
+                				~
+                			</span>
+                		</td>
             		</tr>
         		</tbody>
 			</table>
