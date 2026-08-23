@@ -33,6 +33,7 @@ public class WorkerController {
 	public String getHome(Model model) {
 		addWorkingUsers(model);
 		model.addAttribute("mode","attendance");
+		model.addAttribute("modeout","tocheckout");
 		
 		return "worker/home";
 	}
@@ -48,6 +49,7 @@ public class WorkerController {
 				workTimeService.findTodayWorkingUserById(id);
 		model.addAttribute("selectedWorker",selectedWorker);
 		model.addAttribute("mode","leave");
+		model.addAttribute("modein","tocheckin");
 		
 		return "worker/home";
 			
