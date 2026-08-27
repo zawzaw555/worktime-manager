@@ -22,8 +22,8 @@ CREATE TABLE work_time (
 	id BIGINT AUTO_INCREMENT PRIMARY KEY,
 	worker_id BIGINT NOT NULL,
 	check_date DATE NOT NULL,
-	check_in DATETIME,
-	check_out DATETIME,
+	check_in TIME,
+	check_out TIME,
 	
 	CONSTRAINT fk_work_time_worker
 		FOREIGN KEY (worker_id)
@@ -33,8 +33,8 @@ CREATE TABLE work_time (
 CREATE TABLE break_time (
 	id BIGINT AUTO_INCREMENT PRIMARY KEY,
 	work_time_id BIGINT NOT NULL,
-	break_start DATETIME NOT NULL,
-	break_end DATETIME NULL,
+	break_start TIME NOT NULL,
+	break_end TIME NULL,
 	
 	CONSTRAINT fk_break_work_time
 		FOREIGN KEY (work_time_id)

@@ -17,33 +17,41 @@
 				<div class="admin-toolbar">
 					<label>日付</label>
 					<input type="date">
-					<button type="button">表示</button>
+					<button type="button">検索</button>
 				</div>
 			</form>
 			<table class="home-table">
 				<thead>
 					<tr>
+						<th>日付</th>
 						<th>社員番号</th>
 						<th>社員名</th>
 						<th>出勤</th>
-						<th>休憩時間</th>
 						<th>退勤</th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
-            		<tr>
-                		<td>W001</td>
-                		<td>山田 太郎</td>
-                		<td>09:00</td>
-                		<td>01:00</td>
-                		<td><span class="status-badge status-left">18:00</span></td>
-            		</tr>
-            		<tr>
-                		<td>W002</td>
-                		<td>佐藤 花子</td>
-                		<td>08:50</td>
-                		<td>01:00</td>
-                		<td><span class="status-badge status-working">未退勤</span></td>
+            		<tr th:each="attendance : ${attendanceLists}">
+            			<td th:text="${attendance.checkDate}"></td>
+                		<td th:text="${attendance.workerNo}"></td>
+                		<td th:text="${attendance.workerName}"></td>
+                		<td th:text="${#temporals.format(attendance.checkIn,'HH:mm')}"></td>
+                		<td>
+                			<span class="status-badge status-working"
+                				  th:if="${attendance.checkOut == null
+                				  		and attendance.checkIn != null}">
+                				  未退勤
+                			</span>
+                			
+                			<span class="status-badge status-left"
+               				  th:if="${attendance.checkOut != null}">
+                				  退勤
+                			</span>
+                		</td>
+                		<td>
+                			<a href="#" class="btn-detail btn-edit ms-2">編集</a>
+                		</td>
             		</tr>
         		</tbody>
 			</table>

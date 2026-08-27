@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.zawzaw.worktime.mapper.WorkerMapper;
+import com.zawzaw.worktime.model.dto.AdminAttendanceDto;
 import com.zawzaw.worktime.model.dto.TodayAttendanceDto;
 import com.zawzaw.worktime.model.entity.EWorker;
 
@@ -39,5 +40,9 @@ public class WorkerService {
 		return findTodayAttendance().stream()
 				.filter(a -> a.getCheckOut() != null)
 				.count();
+	}
+	
+	public List<AdminAttendanceDto> findAdminAttendance() {
+		return workerMapper.findAdminAttendance();
 	}
 }

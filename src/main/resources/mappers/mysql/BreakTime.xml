@@ -28,13 +28,13 @@
     	)
     	VALUES (
     		#{workTimeId},
-    		NOW()
+    		DATE_FORMAT(NOW(),'%H:%i:00')
     	)
     </insert>
     
     <update id="updateBreakEnd">
     	UPDATE break_time
-    	SET break_end = NOW()
+    	SET break_end = DATE_FORMAT(NOW(),'%H:%i:00')
     	WHERE work_time_id = #{workTimeId}
     		AND break_end IS NULL
     	ORDER BY break_start DESC

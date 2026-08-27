@@ -85,9 +85,18 @@
 		VALUES (
 			#{workerId},
 			CURDATE(),
-			NOW()
+			DATE_FORMAT(NOW(),'%H:%i:00')
 		)
 	</insert>
+	
+	<update id="updateCheckOut">
+		UPDATE work_time
+		SET check_out = DATE_FORMAT(NOW(),'%H:%i:00')
+		WHERE worker_id = #{workerId}
+			AND check_out IS NULL
+			ORDER BY check_in DESC
+			LIMIT 1;
+	</update>
 	
 	<select id="selectWorking"
 			parameterType="long"
@@ -99,13 +108,4 @@
 		ORDER BY check_in DESC
 		LIMIT 1
 	</select>
-	
-	<update id="updateCheckOut">
-		UPDATE work_time
-		SET check_out = NOW()
-		WHERE worker_id = #{workerId}
-			AND check_out IS NULL
-			ORDER BY check_in DESC
-			LIMIT 1;
-	</update>
 </mapper>

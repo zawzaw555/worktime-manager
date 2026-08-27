@@ -1,6 +1,6 @@
 package com.zawzaw.worktime.model.entity;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import lombok.Data;
 
@@ -11,7 +11,7 @@ public class EBreakTime {
 	
 	private Long workTimeId;
 	
-	private LocalDateTime breakStart;
+	private LocalTime breakStart;
 	
-	private LocalDateTime breakEnd;
+	private LocalTime breakEnd;
 }

@@ -182,6 +182,7 @@ main {
 	color: #fff;
 	font-weight: 600;
 	padding: 8px 12px;
+	text-decoration: none;
 }
 .admin-toolbar button:hover,
 .btn-detail:hover {
