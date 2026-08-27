@@ -48,7 +48,7 @@ nav {
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
-	padding: 8px 26px;
+	padding: 0 26px;
 }
 .navbar-name {
 	text-decoration: none;
@@ -65,7 +65,7 @@ nav {
 	font-weight: 700;
 	
 	padding: 6px;
-	margin-top: 8px 0;
+	margin-top: 4px 0;
 	
 	border: 1px solid transparent;
 	border-radius: 6px;
@@ -295,6 +295,13 @@ nav {
 	display: flex;
 	align-items: center;
 	gap: 8px;
+}
+.disabled {
+	pointer-events: none;
+	opacity: 0.5;
+	cursor: not-allowed;
+	border: 2px solid rgb(174, 174, 174);
+	 border-radius: 5px;
 }
 .btn-break,
 .btn-leave-link {

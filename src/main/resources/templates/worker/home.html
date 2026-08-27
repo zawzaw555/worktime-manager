@@ -37,6 +37,7 @@
 								   class="btn btn-leave-link">出勤へ</a>
 								<a th:href="@{/worker/home/{id}(id=${worker.workerId})}"
 								   th:if="${modeout == 'tocheckout'}" 
+								   th:classappend="${worker.onBreak} ? ' disabled ' : ''"
 								   class="btn btn-leave-link">退勤へ</a>
 									<form th:if="${!worker.onBreak}"
 								  		  th:action="@{/worker/break-start}"
