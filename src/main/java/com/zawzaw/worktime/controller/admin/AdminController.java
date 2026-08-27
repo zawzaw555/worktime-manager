@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.zawzaw.worktime.model.dto.AdminAttendanceDto;
 import com.zawzaw.worktime.model.entity.EWorker;
 import com.zawzaw.worktime.service.WorkerService;
 
@@ -57,6 +58,9 @@ public class AdminController {
 	}
 	@GetMapping("/attendance")
 	public String getAttendance(Model model) {
+		
+		List<AdminAttendanceDto> attendanceLists= workerService.findAdminAttendance();
+		model.addAttribute("attendanceLists",attendanceLists);
 		model.addAttribute("mode","attendance");
 		return "admin/dashboard";
 	}

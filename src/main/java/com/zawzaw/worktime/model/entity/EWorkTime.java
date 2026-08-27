@@ -1,7 +1,7 @@
 package com.zawzaw.worktime.model.entity;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import lombok.Data;
 
@@ -14,7 +14,7 @@ public class EWorkTime {
 	
 	private LocalDate checkDate;
 	
-	private LocalDateTime checkIn;
+	private LocalTime checkIn;
 	
-	private LocalDateTime checkOut;
+	private LocalTime checkOut;
 }

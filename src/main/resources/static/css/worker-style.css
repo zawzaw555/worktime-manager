@@ -77,11 +77,11 @@ nav {
 
 /*worker attend*/
 .worker-page {
-	padding: 32px 0 48px;
+	padding: 18px 0 32px;
 	text-align: left;
 }
 .worker-page-title {
-	margin-bottom: 28px;
+	margin-bottom: 21px;
 	text-align: center;
 }
 .work-action-header p,
@@ -92,6 +92,10 @@ nav {
 	font-weight: 700;
 	letter-spacing: 0;
 	text-transform: uppercase;
+}
+.work-action-header {
+	margin: 0;
+	padding: 0;
 }
 .worker-page-title h1 {
 	margin: 4px 0 0;
@@ -120,10 +124,11 @@ nav {
 	box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
 }
 .work-action-card .card-body {
-	padding: 28px;
+	padding: 24px 32px;
 }
 .work-action-header {
-	margin-bottom: 22px;
+	margin-bottom: 4px;
+	padding-left: 6px;
 	text-align: left;
 }
 .work-action-header h4 {
@@ -141,11 +146,10 @@ nav {
 .worker-wrapper .work-form {
 	width: 100%;
 	box-sizing: border-box;
-	gap: 8px;
+	gap: 4px;
 }
 .worker-wrapper .input-label {
-	margin-bottom: 5px;
-	padding-left: 0;
+	padding: 0;
 	text-align: left;
 }
 .worker-wrapper .input-label label {
@@ -157,7 +161,8 @@ nav {
 	 box-sizing: border-box;
 	 width: 100%;
 
-	 padding: 10px 12px;
+	 padding: 8px 12px;
+	 margin-bottom: 8px;
 
 	 border: 1px solid #b8c4d2;
 	 border-radius: 6px;
@@ -324,7 +329,7 @@ nav {
 
 @media (max-width: 768px) {
 	.worker-dashboard {
-		grid-template-columns: 1fr;
+		grid-template-columns: 0.7fr;
 		padding: 0 56px;
 	}
 	.worker-page-title h1 {

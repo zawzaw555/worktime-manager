@@ -1,6 +1,6 @@
 package com.zawzaw.worktime.model.dto;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import lombok.Data;
 
@@ -13,7 +13,7 @@ public class WorkingUserDto {
 	
 	private String name;
 	
-	private LocalDateTime checkIn;
+	private LocalTime checkIn;
 	
 	private boolean onBreak;
 }
