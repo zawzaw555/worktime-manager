@@ -20,19 +20,25 @@ public class AdminController {
 	
 	private final WorkerService workerService;
 	
+	/* home */
 	@GetMapping("/home")
 	public String getHome(Model model) {
 		
 		model.addAttribute("mode","home");
 		
 		model.addAttribute(
-				"attendanceList",
+				"homeList",
 				workerService.findTodayAttendance()
 		);
 		
 		model.addAttribute(
 				"totalCount",
 				workerService.countTodayAttendance()
+		);
+		
+		model.addAttribute(
+				"checkInCount",
+				workerService.countTodayCheckIn()
 		);
 		
 		model.addAttribute(
@@ -47,6 +53,8 @@ public class AdminController {
 		
 		return "admin/dashboard";
 	}
+	
+	/* worker */
 	@GetMapping("/worker")
 	public String getWorker(Model model) {
 		
@@ -56,6 +64,8 @@ public class AdminController {
 		
 		return "admin/dashboard";
 	}
+	
+	/* attendance */
 	@GetMapping("/attendance")
 	public String getAttendance(Model model) {
 		

@@ -1,4 +1,4 @@
-/*logiin*/
+/* login */
 .login-wrapper {
 	display: flex;
 	justify-content: center;
@@ -41,16 +41,38 @@
 }
 
 /*header navbar*/
-nav {
-	background-color: rgb(137, 205, 167);
+body {
+	margin: 0;
+	padding: 0;
 }
-.header-nav {
+.nav-frame {
+	display: flex;
+	align-items: center;
+	height:60px;
+	background-color: rgb(137, 205, 167);
+	width: 100%;
+}
+.nav-header {
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 	padding: 0 26px;
 }
-.navbar-name {
+.nav-brand {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	width: 110px;
+}
+.nav-brand img {
+	width: 70px;
+	height: auto;
+	display: block;
+	transform: rotate(-28deg) translateY(7px);
+	transform-origin: center;
+}
+.nav-name {
 	text-decoration: none;
 	color: black;
 }
@@ -60,19 +82,19 @@ nav {
 	box-sizing: border-box;
 	
 	font-size: 20px;
-	color: #334155;
+	color: black;
 	text-decoration: none;
 	font-weight: 700;
 	
 	padding: 6px;
-	margin-top: 4px 0;
+	margin: 4px 0;
 	
 	border: 1px solid transparent;
 	border-radius: 6px;
 }
 .nav-btn:hover {
-	color: #334155;
-	font-weight: 850;
+	color: black;
+	font-weight: 800;
 }
 
 /*worker attend*/
@@ -92,10 +114,6 @@ nav {
 	font-weight: 700;
 	letter-spacing: 0;
 	text-transform: uppercase;
-}
-.work-action-header {
-	margin: 0;
-	padding: 0;
 }
 .worker-page-title h1 {
 	margin: 4px 0 0;
@@ -118,9 +136,11 @@ nav {
 .worker-wrapper .card {
 	width: 100%;
 }
-.work-action-card {
+.work-action-card,
+.attendance-panel {
 	border: 1px solid #d9e2ec;
 	border-radius: 8px;
+	background-color: #fff;
 	box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
 }
 .work-action-card .card-body {
@@ -212,10 +232,6 @@ nav {
 /*worker table*/
 .attendance-panel {
 	box-sizing: border-box;
-	border: 1px solid #d9e2ec;
-	border-radius: 8px;
-	background-color: #fff;
-	box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
 	overflow: hidden;
 }
 .attendance-header {

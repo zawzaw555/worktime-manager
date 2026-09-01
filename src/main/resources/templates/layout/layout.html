@@ -3,7 +3,7 @@
 	xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="UTF-8">
-<meta name="viewpoit" content="width=device-width, initial-scale=1,shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
 <!-- 共通CSS -->
 <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.8/css/bootstrap.min.css}">
 <link rel="stylesheet" th:href="@{/css/worker-style.css}">
@@ -20,12 +20,6 @@
 	<nav layout:replace="~{layout/header::header-content}"></nav>
 	
 	<!-- contents -->
-	<div>
-		<div class="row text-center justify-content-center">
-			<div class="col">
-				<div layout:fragment="content"></div>
-			</div>
-		</div>
-	</div>
+	<div layout:fragment="content"></div>
 </body>
 </html>

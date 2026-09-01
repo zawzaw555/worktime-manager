@@ -17,4 +17,7 @@ public class AdminAttendanceDto {
 	
 	private LocalTime breakStart;
 	private LocalTime breakEnd;
+	
+	private String breakTime;
+	private String workingTime;
 }
