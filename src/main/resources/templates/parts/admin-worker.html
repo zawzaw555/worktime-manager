@@ -7,34 +7,39 @@
 </head>
 <body>
 	<div th:fragment="worker-content">
-		<div class="main-frame">
-			<div class="admin-page-header">
-				<div>
-					<h3>社員管理</h3>
+		<div class="worker-frame">
+			<div class="worker-header">
+				<h2>社員管理</h2>
+			</div>
+			<div class="worker-toolbar">
+				<div class="toolbar">
+					<form action="">
+						<input type="text" placeholder="社員番号・社員名で検索">
+						<button type="button">検索</button>
+					</form>
 				</div>
-				<a class="admin-primary-link" href="#"><span><i class="fa-solid fa-plus"></i></span>新規社員登録</a>
+				<a class="admin-primary-link" href="#"><span><i class="fa-solid fa-plus fs-3"></i></span>新規社員登録</a>
 			</div>
-			<div class="admin-toolbar">
-				<input type="text" placeholder="社員番号・社員名で検索">
-				<button type="button">検索</button>
-			</div>
-			<table class="home-table">
+			<table class="table-list">
 				<thead>
 					<tr>
 						<th>No.</th>
 						<th>社員番号</th>
 						<th>社員名</th>
 						<th></th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
-            		<tr th:each="worker : ${workerList}">
-                		<td th:text="${worker.id}"></td>
+            		<tr th:each="worker ,stat : ${workerList}">
+                		<td th:text="${stat.count}"></td>
                 		<td th:text="${worker.workerNo}"></td>
                 		<td th:text="${worker.name}"></td>
                 		<td>
                     		<a href="#" class="btn-detail">詳細</a>
-                    		<a href="#" class="btn-detail btn-edit ms-2">編集</a>
+                		</td>
+                		<td>
+                			<a href="#" class="btn-detail btn-edit ms-2">編集</a>
                 		</td>
             		</tr>
         		</tbody>

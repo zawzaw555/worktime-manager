@@ -3,58 +3,71 @@
 	  xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="UTF-8">
-<title>Home</title>
+<title>Attendance</title>
 </head>
 <body>
 	<div th:fragment="attendance-content">
-		<div class="main-frame">
-			<div class="admin-page-header">
-				<div>
-					<h3>勤怠管理</h3>
-				</div>
+		<div class="attend-frame">
+			<div class="attend-header">
+				<h2>勤怠管理</h2>
 			</div>
-			<form action="">
-				<div class="admin-toolbar">
-					<label>日付</label>
-					<input type="date">
-					<button type="button">検索</button>
-				</div>
-			</form>
-			<table class="home-table">
-				<thead>
-					<tr>
-						<th>日付</th>
-						<th>社員番号</th>
-						<th>社員名</th>
-						<th>出勤</th>
-						<th>退勤</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-            		<tr th:each="attendance : ${attendanceLists}">
-            			<td th:text="${attendance.checkDate}"></td>
-                		<td th:text="${attendance.workerNo}"></td>
-                		<td th:text="${attendance.workerName}"></td>
-                		<td th:text="${#temporals.format(attendance.checkIn,'HH:mm')}"></td>
-                		<td>
-                			<span class="status-badge status-working"
-                				  th:if="${attendance.checkOut == null
-                				  		and attendance.checkIn != null}">
-                				  未退勤
-                			</span>
-                			
-                			<span class="status-badge status-left"
-               				  th:if="${attendance.checkOut != null}">
-                				  退勤
-                			</span>
-                		</td>
-                		<td>
-                			<a href="#" class="btn-detail btn-edit ms-2">編集</a>
-                		</td>
-            		</tr>
-        		</tbody>
-			</table>
+			<div class="search-toolbar">
+				<form action="">
+					<div class="form-toolbar">
+						<label class="text-center">日付</label>
+						<input type="date">
+					</div>
+					<div class="form-toolbar">
+						<label>社員番号</label>
+						<input type="text">
+					</div>
+					<div class="form-toolbar">
+						<button class="btn-toolbar" type="button">検索</button>
+					</div>
+				</form>
+			</div>
+			<div class="table-wrapper">			
+				<table class="table-list">
+					<thead>
+						<tr>
+							<th>No.</th>
+							<th>日付</th>
+							<th>社員番号</th>
+							<th>社員名</th>
+							<th>出勤時</th>
+							<th>退勤時</th>
+							<th>休憩時間</th>
+							<th>実働時間</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+            			<tr th:each="attendance , stat : ${attendanceLists}">
+            				<td th:text="${stat.count}"></td>
+            				<td th:text="${attendance.checkDate}"></td>
+                			<td th:text="${attendance.workerNo}"></td>
+                			<td th:text="${attendance.workerName}"></td>
+                			<td th:text="${#temporals.format(attendance.checkIn,'HH:mm')}"></td>
+                			<td>
+                				<span class="status-badge"
+                				  	  th:if="${attendance.checkOut == null
+                				  			and attendance.checkIn != null}">
+                				  		-
+                				</span>
+                				<span class="status-badge status-left"
+               				  		  th:if="${attendance.checkOut != null}"
+               				  		  th:text="${attendance.checkOut}">
+                				</span>
+                			</td>
+                			<td th:text="${attendance.breakTime}"></td>
+                			<td th:text="${attendance.workingTime}"></td>
+                			<td>
+                				<a href="#" class="btn-detail btn-edit">編集</a>
+                			</td>
+            			</tr>
+        			</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 </body>

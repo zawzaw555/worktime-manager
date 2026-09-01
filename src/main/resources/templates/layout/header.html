@@ -4,12 +4,13 @@
 <head>
 </head>
 <body>
-	<nav layout:fragment="header-content" class="navbar navbar-expand-lg">
-  		<div class="header-nav">
-    		<div class="navbar-brand">
-    			<h3>
-    				<a class="navbar-name" href="#">SOURA株式会社</a>
-    			</h3>
+	<nav layout:fragment="header-content" class="nav-frame">
+  		<div class="nav-header">
+  			<div class="nav-brand">
+  				<img alt="SORAロゴ" th:src="@{/image/logo/sky.png}">
+  			</div>
+    		<div class="nav-name">
+    			<h3>SOURA株式会社</h3>
     		</div>
      		<form th:action="@{/logout}" method="post">
     			<button class="btn btn-link nav-btn" type="submit">ログアウト</button>

@@ -20,6 +20,7 @@ public class SecurityConfig {
 					"/login",
 					"/css/**",
 					"/js/**",
+					"/image/**",
 					"/webjars/**"
 				).permitAll()
 				.requestMatchers("/worker/**").permitAll()
