@@ -24,14 +24,17 @@
 				</ul>
 			</aside>
 			<main class="main-container">
-				<section class="" th:if="${mode == 'home'}">
+				<section th:if="${mode == 'home'}">
 					<div th:replace="~{parts/admin-home :: home-content}"></div>
 				</section>
-				<section class="" th:if="${mode == 'worker'}">
+				<section th:if="${mode == 'worker'}">
 					<div th:replace="~{parts/admin-worker :: worker-content}"></div>
 				</section>
-				<section class="" th:if="${mode == 'attendance'}">
+				<section th:if="${mode == 'attendance'}">
 					<div th:replace="~{parts/admin-attendance :: attendance-content}"></div>
+				</section>
+				<section th:if="${mode == 'signup'}">
+					<div th:replace="~{parts/admin-signup :: signup-content}"></div>
 				</section>
 			</main>
 		</div>
