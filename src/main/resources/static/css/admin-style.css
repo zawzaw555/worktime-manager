@@ -189,6 +189,10 @@ sidebar a.active {
 	color: var(--color-text-green);
 	font-size: 19px;
 }
+/* worker -> signup -> error-message */
+.error-msg p {
+	color: var(--color-red);
+}
 
 /* attend-frame */
 .form-toolbar {

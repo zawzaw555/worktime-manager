@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title>Signup</title>
+</head>
+<body>
+	<div th:fragment="signup-content">
+		<div class="worker-frame">
+			<div class="login-wrapper">
+				<div class="card bg-light rounded-4">
+					<div class="card-body text-center">
+						<form th:action="@{/admin/signup}" 
+							  method="post"
+							  th:object="${signupForm}">
+							<h2>社員登録</h2>
+							<div class="input-control error-msg">
+								<label>ログインID</label>
+								<input type="text" th:field="*{workerNo}" placeholder="ログインID">
+								<p th:errors="*{workerNo}"></p>
+							</div>
+							<div class="input-control error-msg">
+								<label>名前</label>
+								<input type="text" th:field="*{name}" placeholder="名前">
+								<p th:errors="*{name}"></p>
+							</div>
+							<div class="input-control error-msg">
+								<label>email</label>
+								<input type="email" th:field="*{email}" placeholder="メール">
+								<p th:errors="*{email}"></p>
+							</div>
+							<div class="input-control error-msg">
+								<label>パスワード</label>
+								<input type="password" th:field="*{password}" placeholder="パスワード">
+								<p th:errors="*{password}"></p>
+							</div>
+							<input type="submit" value="登録" class="btn btn-primary mb-1"><br>
+							<a th:href="@{/admin/worker}">社員管理ページへ</a>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

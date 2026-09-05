@@ -26,14 +26,11 @@ public class WorkerService {
 	
 	public List<AdminAttendanceDto> findTodayAttendance() {
 		
-		
-		List<AdminAttendanceDto> homeLists = 
-								
+		List<AdminAttendanceDto> homeLists = 				
 									workerMapper.findTodayAttendance();
 		
 		Map<String,Long> totalMinutesMap = new LinkedHashMap<>();
 		Map<String,AdminAttendanceDto> workerMap = new LinkedHashMap<>();
-		
 		
 			for (AdminAttendanceDto attendance : homeLists) {
 				
@@ -177,5 +174,22 @@ public class WorkerService {
 				minutes / 60,
 				minutes % 60
 				);
+	}
+	
+	/* workerNo の有無確認 */
+	public boolean workerNoExist(String workerNo) {
+		int countWorkerNo = workerMapper.countByWorkerNo(workerNo);
+		
+		return countWorkerNo > 0;
+	}
+	public boolean emailExist(String email) {
+		int countEmail = workerMapper.countByEmail(email);
+		
+		return countEmail > 0;
+	}
+	
+	/* insert worker signup */
+	public void workerSignup(EWorker worker) {
+		workerMapper.insertWorkerSignup(worker);
 	}
 }

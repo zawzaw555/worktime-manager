@@ -30,6 +30,7 @@ Spring Bootで作成した勤怠管理アプリケーションです。
 - Bootstrap 5
 - Lombok
 - Maven
+- ModelMapper
 
 ### DB接続設定
 src/main/resources/application.propertiesの接続情報を自分の環境に合わせて変更します。
@@ -73,7 +74,7 @@ http://localhost:8080/
 ### 工夫した点
 - 管理者画面と従業員画面を分けて、役割ごとに使いやすい画面構成にしました。
 - 出勤、退勤、休憩開始、休憩終了をボタン操作で登録できるようにしました。
-- MyBatisを使用して、SQLとJavaの処理を分けて管理しやすくしました。
+- MyBatisを使用して、MYSQLとJavaの処理を分けて管理しやすくしました。
 - Thymeleafを使用して、画面表示をサーバー側で動的に切り替えられるようにしました。
 
 ### 今後の改善点
@@ -82,6 +83,7 @@ http://localhost:8080/
 - 月ごとの勤怠一覧機能を追加する
 - 従業員の登録・編集・削除機能を追加する
 - 社員番号や社員名や日付で検索できる機能を追加する
+- input formにvalidationを追加する
 
 ### コミット状況
 

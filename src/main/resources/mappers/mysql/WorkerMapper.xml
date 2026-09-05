@@ -10,17 +10,18 @@
 		<result column="email" property="email"/>
 		<result column="password" property="password"/>
 	</resultMap>
-	<select id="findByWorkerNo"
-			parameterType="string"
-			resultMap="workerResultMap">
-		SELECT
-			id,
-			worker_no,
-			name,
-			email,
-			password
+	<select id="countByWorkerNo"
+			resultType="int">
+		SELECT COUNT(*)
 		FROM worker
 		WHERE worker_no = #{workerNo}
+	</select>
+	
+	<select id="countByEmail"
+			resultType="int">
+		SELECT COUNT(*)
+		FROM worker
+		WHERE email = #{email}
 	</select>
 	
 	<select id="findAll" resultMap="workerResultMap">
@@ -70,4 +71,20 @@
 				ON bt.work_time_id = wt.id
 			ORDER BY wt.check_date DESC, wt.check_in DESC
 	</select>
+	
+	<insert id="insertWorkerSignup">
+		INSERT INTO worker(
+			worker_no,
+			name,
+			email,
+			password
+		)
+		VALUES (
+			#{workerNo},
+			#{name},
+			#{email},
+			#{password}
+		)
+		
+	</insert>
 </mapper>
