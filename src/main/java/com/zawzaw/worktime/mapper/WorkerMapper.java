@@ -22,4 +22,10 @@ public interface WorkerMapper {
 	int countByWorkerNo(String workerNo);
 	
 	int countByEmail(String email);
+	
+	String findWorkerByWorkerNo(String workerNo);
+	
+	String findWorkerByWorkerName(String workerName);
+	
+	EWorker findWorkerById(Long id);
 }

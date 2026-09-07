@@ -36,6 +36,9 @@
 				<section th:if="${mode == 'signup'}">
 					<div th:replace="~{parts/admin-signup :: signup-content}"></div>
 				</section>
+				<section th:if="${mode == 'edit'}">
+					<div th:replace="~{parts/admin-edit :: edit-content}"></div>
+				</section>
 			</main>
 		</div>
 	</div>

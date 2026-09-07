@@ -1,5 +1,6 @@
 /* login */
-.login-wrapper {
+.login-wrapper,
+.signup-wrapper {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -13,13 +14,18 @@
 	flex-direction: column;
 	padding: 10px;
 }
-.login-wrapper .input-group {
+.login-wrapper .input-group,
+
+.signup-wrapper .input-group {
 	width: 250px;
 }
 .input-label {
 	text-align: left;
 	font-size: 18px;
-	padding-left: 20px;
+	padding-left: 22px;
+}
+.input-control {
+	margin-bottom: 14px;
 }
 .input-control input {
 	 box-sizing: border-box;
@@ -160,8 +166,8 @@ body {
 .work-error {
 	display: block;
 	margin-bottom: 12px;
-	color: #dc2626;
 	font-weight: 700;
+	color: #dc2626;
 }
 .worker-wrapper .work-form {
 	width: 100%;

@@ -39,7 +39,7 @@
                     		<a href="#" class="btn-detail">詳細</a>
                 		</td>
                 		<td>
-                			<a href="#" class="btn-detail btn-edit ms-2">編集</a>
+                			<a th:href="@{/admin/worker/edit/{id}(id= ${worker.id})}" class="btn-detail btn-edit ms-2">編集</a>
                 		</td>
             		</tr>
         		</tbody>

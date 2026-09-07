@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -84,5 +85,13 @@ public class AdminWorkerController {
 		// DBへ登録
 		workerService.workerSignup(worker);
 		return "redirect:/admin/worker";
+	}
+	
+	@GetMapping("/worker/edit/{id}")
+	public String editWorker(@PathVariable Long id,Model model) {
+		EWorker worker = workerService.findWorkerEdit(id);
+		model.addAttribute("worker",worker);
+		setPageInfo(model,"Edit","edit");
+		return "admin/dashboard";
 	}
 }
