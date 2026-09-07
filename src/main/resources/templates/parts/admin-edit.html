@@ -11,16 +11,17 @@
 			<div class="signup-wrapper">
 				<div class="card bg-light rounded-4">
 					<div class="card-body text-center">
-						<form action="#" 
-							  method="get"
+						<form th:action="@{/admin/worker/update}" 
+							  method="post"
 							  th:object="${worker}">
 							<h2>社員情報編集</h2>
 							<div class="input-group">
+								<input type="hidden" th:field="*{id}">
 								<div class="input-label">
 									<label>ログインID</label>
 								</div>
 								<div class="input-control">
-									<input type="text" th:field="*{workerNo}">
+									<input type="text" th:field="*{workerNo}" readonly>
 								</div>
 								<div class="input-label">
 									<label>社員名</label>
@@ -36,14 +37,7 @@
 									<input type="email" th:field="*{email}">
 									<p th:errors="*{email}"></p>
 								</div>
-								<div class="input-label">
-									<label>パスワード</label>
-								</div>
-								<div class="input-control error-msg">
-									<input type="password" th:field="*{password}">
-									<p th:errors="*{password}"></p>
-								</div>
-								<div class="">
+								<div>
 									<input type="submit" value="更新" class="btn btn-primary mb-1"><br>
 								</div>
 								<a th:href="@{/admin/worker}">社員管理ページへ</a>

@@ -28,13 +28,20 @@
 			resultType="com.zawzaw.worktime.model.entity.EWorker">
 		SELECT
 			id,
-			worker_no,
+			worker_no AS workerNo,
 			name,
-			email,
-			password
+			email
 		FROM worker
 		WHERE id = ${id}
 	</select>
+	
+	<update id="updateWorker">
+		UPDATE worker
+		SET
+			name = #{name},
+			email = #{email}
+		WHERE id = #{id}
+	</update>
 	<select id="findAll" resultMap="workerResultMap">
 		SELECT *
 		FROM worker

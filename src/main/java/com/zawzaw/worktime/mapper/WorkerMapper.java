@@ -28,4 +28,6 @@ public interface WorkerMapper {
 	String findWorkerByWorkerName(String workerName);
 	
 	EWorker findWorkerById(Long id);
+	
+	int updateWorker(EWorker worker);
 }
