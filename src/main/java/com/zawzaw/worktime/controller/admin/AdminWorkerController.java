@@ -94,4 +94,12 @@ public class AdminWorkerController {
 		setPageInfo(model,"Edit","edit");
 		return "admin/dashboard";
 	}
+	
+	@PostMapping("/worker/update")
+	public String updateWorker(
+			Model model,
+			@ModelAttribute EWorker worker) {
+		workerService.workerUpdate(worker);
+		return "redirect:/admin/worker";
+	}
 }

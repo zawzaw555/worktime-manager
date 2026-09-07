@@ -197,4 +197,10 @@ public class WorkerService {
 	public EWorker findWorkerEdit(Long id) {
 		return workerMapper.findWorkerById(id);
 	}
+	
+	/* worker情報更新 */
+	public boolean workerUpdate(EWorker worker) {
+		int updateWorker = workerMapper.updateWorker(worker);
+		return updateWorker > 0;
+	}
 }
