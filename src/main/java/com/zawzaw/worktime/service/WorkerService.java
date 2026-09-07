@@ -192,4 +192,9 @@ public class WorkerService {
 	public void workerSignup(EWorker worker) {
 		workerMapper.insertWorkerSignup(worker);
 	}
+	
+	/* 編集のworker情報表示 */
+	public EWorker findWorkerEdit(Long id) {
+		return workerMapper.findWorkerById(id);
+	}
 }

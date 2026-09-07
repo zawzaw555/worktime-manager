@@ -24,6 +24,17 @@
 		WHERE email = #{email}
 	</select>
 	
+	<select id="findWorkerById"
+			resultType="com.zawzaw.worktime.model.entity.EWorker">
+		SELECT
+			id,
+			worker_no,
+			name,
+			email,
+			password
+		FROM worker
+		WHERE id = ${id}
+	</select>
 	<select id="findAll" resultMap="workerResultMap">
 		SELECT *
 		FROM worker

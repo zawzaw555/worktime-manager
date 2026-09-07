@@ -191,6 +191,9 @@ sidebar a.active {
 }
 /* worker -> signup -> error-message */
 .error-msg p {
+	display: block;
+	margin-bottom: 12px;
+	font-weight: 700;
 	color: var(--color-red);
 }
 
