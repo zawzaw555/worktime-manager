@@ -176,7 +176,7 @@ public class WorkerService {
 				);
 	}
 	
-	/* workerNo の有無確認 */
+	/* workerNoの有無確認 */
 	public boolean workerNoExist(String workerNo) {
 		int countWorkerNo = workerMapper.countByWorkerNo(workerNo);
 		
@@ -193,8 +193,13 @@ public class WorkerService {
 		workerMapper.insertWorkerSignup(worker);
 	}
 	
-	/* 編集のworker情報表示 */
+	/* worker情報編集表示 */
 	public EWorker findWorkerEdit(Long id) {
+		return workerMapper.findWorkerById(id);
+	}
+	
+	/* worker情報詳細表示 */
+	public EWorker findWorkerDetail(Long id) {
 		return workerMapper.findWorkerById(id);
 	}
 	

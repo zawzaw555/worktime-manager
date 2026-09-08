@@ -42,6 +42,7 @@
 			email = #{email}
 		WHERE id = #{id}
 	</update>
+	
 	<select id="findAll" resultMap="workerResultMap">
 		SELECT *
 		FROM worker

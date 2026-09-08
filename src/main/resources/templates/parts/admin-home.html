@@ -61,21 +61,21 @@
                 		<td th:text="${attendance.workerName}"></td>
                 		<td>
                 			<!-- 出勤中 -->
-                			<span class="status-badge status-working"
+                			<span
                 				  th:if="${attendance.checkOut == null
                 				  		   and (attendance.breakStart == null
                 				  		   or attendance.breakEnd != null)}">
                 				出勤中
                 			</span>
                 			<!-- 休憩中 -->
-                			<span class="status-badge status-break"
+                			<span
                 				  th:if="${attendance.checkOut == null
                 				  		   and (attendance.breakStart != null
                 				  		   and attendance.breakEnd == null)}">
                 				休憩中
                 			</span>
                 			<!-- 退勤済み -->
-                			<span class="status-badge status-left"
+                			<span
                 				  th:if="${attendance.checkOut != null}">
                 				退勤済み
                 			</span>

@@ -18,7 +18,7 @@
 						<button type="button">検索</button>
 					</form>
 				</div>
-				<a class="admin-primary-link" th:href="@{/admin/signup}"><span><i class="fa-solid fa-plus fs-3"></i></span>新規社員登録</a>
+				<a th:href="@{/admin/signup}"><span><i class="fa-solid fa-plus fs-3"></i></span>新規社員登録</a>
 			</div>
 			<table class="table-list">
 				<thead>
@@ -36,10 +36,10 @@
                 		<td th:text="${worker.workerNo}"></td>
                 		<td th:text="${worker.name}"></td>
                 		<td>
-                    		<a href="#" class="btn-detail">詳細</a>
+                    		<a th:href="@{/admin/worker/detail/{id}(id = ${worker.id})}">詳細</a>
                 		</td>
                 		<td>
-                			<a th:href="@{/admin/worker/edit/{id}(id= ${worker.id})}" class="btn-detail btn-edit ms-2">編集</a>
+                			<a th:href="@{/admin/worker/edit/{id}(id = ${worker.id})}" class="ms-2">編集</a>
                 		</td>
             		</tr>
         		</tbody>

@@ -39,6 +39,9 @@
 				<section th:if="${mode == 'edit'}">
 					<div th:replace="~{parts/admin-edit :: edit-content}"></div>
 				</section>
+				<section th:if="${mode == 'detail'}">
+					<div th:replace="~{parts/admin-detail :: detail-content}"></div>
+				</section>
 			</main>
 		</div>
 	</div>
