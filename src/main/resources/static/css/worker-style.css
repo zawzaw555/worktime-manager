@@ -1,10 +1,21 @@
 /* login */
 .login-wrapper,
-.signup-wrapper {
+.signup-wrapper,
+.worker-wrapper {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	min-height: 80vh;
+}
+.signup-wrapper h2,
+.signup-wrapper a,
+.detail-wrapper h2,
+.wrapper-btn,
+.input-control {
+	text-align: center;
+}
+.detail-wrapper {
+	margin: 4px 8px 0;
 }
 .card {
 	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
@@ -14,18 +25,30 @@
 	flex-direction: column;
 	padding: 10px;
 }
-.login-wrapper .input-group,
-
-.signup-wrapper .input-group {
-	width: 250px;
+.detail-label {
+	display: grid;
+	grid-template-columns: 150px 1fr;
+	align-items: center;
+	gap: 8px;
 }
-.input-label {
+.one-label {
+	text-align: right;
+}
+.login-wrapper .input-group {
+	width: 300px;
+}
+.input-label,
+.detail-label,
+.input-control h5 {
 	text-align: left;
-	font-size: 18px;
-	padding-left: 22px;
+	padding-left: 20px;
+}
+.detail-group a{
+	display: block;
+	text-align: center;
 }
 .input-control {
-	margin-bottom: 14px;
+	margin: 4px 0 8px;
 }
 .input-control input {
 	 box-sizing: border-box;
@@ -133,11 +156,6 @@ body {
 	gap: 62px;
 	justify-content: center;
 	align-items: start;
-}
-.worker-wrapper {
-	display: flex;
-	justify-content: center;
-	align-items: center;
 }
 .worker-wrapper .card {
 	width: 100%;
@@ -323,7 +341,7 @@ body {
 	opacity: 0.5;
 	cursor: not-allowed;
 	border: 2px solid rgb(174, 174, 174);
-	 border-radius: 5px;
+	border-radius: 5px;
 }
 .btn-break,
 .btn-leave-link {
