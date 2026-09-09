@@ -28,6 +28,7 @@
 						<th>社員名</th>
 						<th></th>
 						<th></th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -40,6 +41,9 @@
                 		</td>
                 		<td>
                 			<a th:href="@{/admin/worker/edit/{id}(id = ${worker.id})}" class="ms-2">編集</a>
+                		</td>
+                		<td>
+                			<a th:href="@{/admin/worker/delete/{id}(id = ${worker.id})}" class="ms-2">削除</a>
                 		</td>
             		</tr>
         		</tbody>

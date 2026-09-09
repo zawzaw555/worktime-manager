@@ -193,12 +193,12 @@ public class WorkerService {
 		workerMapper.insertWorkerSignup(worker);
 	}
 	
-	/* worker情報編集表示 */
+	/* worker情報編集 */
 	public EWorker findWorkerEdit(Long id) {
 		return workerMapper.findWorkerById(id);
 	}
 	
-	/* worker情報詳細表示 */
+	/* worker情報詳細 */
 	public EWorker findWorkerDetail(Long id) {
 		return workerMapper.findWorkerById(id);
 	}
@@ -207,5 +207,10 @@ public class WorkerService {
 	public boolean workerUpdate(EWorker worker) {
 		int updateWorker = workerMapper.updateWorker(worker);
 		return updateWorker > 0;
+	}
+	
+	/* worker情報削除 */
+	public boolean deleteWorker(Long id) {
+		return workerMapper.deleteWorker(id) > 0;
 	}
 }

@@ -30,15 +30,15 @@
 									<input type="text" th:field="*{name}">
 									<p th:errors="*{name}"></p>
 								</div>
-								<div class="input-label">
+								<div class="input-label mt-1">
 									<label>メールアドレス</label>
 								</div>
 								<div class="input-control error-msg">
 									<input type="email" th:field="*{email}">
 									<p th:errors="*{email}"></p>
 								</div>
-								<div class="wrapper-btn">
-									<input type="submit" value="更新" class="btn btn-primary mb-1"><br>
+								<div class="wrapper-btn mt-1">
+									<input type="submit" value="更新" class="mb-1"><br>
 								</div>
 								<a th:href="@{/admin/worker}">社員管理ページへ</a>
 							</div>

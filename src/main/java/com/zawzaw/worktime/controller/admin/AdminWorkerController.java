@@ -111,4 +111,13 @@ public class AdminWorkerController {
 		setPageInfo(model,"Detail","detail");
 		return "admin/dashboard";
 	}
+	
+	/* Admin -> Worker Delete */
+	@GetMapping("/worker/delete/{id}")
+	public String deleteWorker(
+			Model model,
+			@PathVariable Long id) {
+		workerService.deleteWorker(id);
+		return "redirect:/admin/worker";
+	}
 }
