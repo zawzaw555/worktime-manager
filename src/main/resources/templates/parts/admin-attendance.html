@@ -49,12 +49,12 @@
                 			<td th:text="${attendance.workerName}"></td>
                 			<td th:text="${#temporals.format(attendance.checkIn,'HH:mm')}"></td>
                 			<td>
-                				<span class="status-badge"
+                				<span
                 				  	  th:if="${attendance.checkOut == null
                 				  			and attendance.checkIn != null}">
                 				  		-
                 				</span>
-                				<span class="status-badge status-left"
+                				<span
                				  		  th:if="${attendance.checkOut != null}"
                				  		  th:text="${attendance.checkOut}">
                 				</span>
@@ -62,7 +62,7 @@
                 			<td th:text="${attendance.breakTime}"></td>
                 			<td th:text="${attendance.workingTime}"></td>
                 			<td>
-                				<a href="#" class="btn-detail btn-edit">編集</a>
+                				<a href="#">編集</a>
                 			</td>
             			</tr>
         			</tbody>

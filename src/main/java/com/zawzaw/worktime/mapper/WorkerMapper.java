@@ -30,4 +30,6 @@ public interface WorkerMapper {
 	EWorker findWorkerById(Long id);
 	
 	int updateWorker(EWorker worker);
+	
+	int deleteWorker(Long id);
 }

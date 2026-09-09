@@ -63,10 +63,10 @@
 							</div>
 						</div>
 				</section>
-				<section class="work-panel" th:if="${mode == 'attendance'}">
+				<section th:if="${mode == 'attendance'}">
 					<div th:replace="~{parts/attendance :: attend-content}"></div>
 				</section>
-				<section class="work-panel" th:if="${mode == 'leave'}">
+				<section th:if="${mode == 'leave'}">
 					<div th:replace="~{parts/leave :: leave-content}"></div>
 				</section>
 			</div>

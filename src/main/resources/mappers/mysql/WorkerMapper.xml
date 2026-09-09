@@ -42,6 +42,12 @@
 			email = #{email}
 		WHERE id = #{id}
 	</update>
+	
+	<delete id="deleteWorker">
+		DELETE FROM worker
+		WHERE id = #{id}
+	</delete>
+	
 	<select id="findAll" resultMap="workerResultMap">
 		SELECT *
 		FROM worker
