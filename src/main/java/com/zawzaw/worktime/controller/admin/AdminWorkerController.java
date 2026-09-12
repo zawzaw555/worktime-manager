@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.zawzaw.worktime.model.dto.WorkerSignupDto;
 import com.zawzaw.worktime.model.entity.EWorker;
@@ -38,6 +39,22 @@ public class AdminWorkerController {
 	public String getWorker(Model model) {
 		setPageInfo(model,"Worker","worker");
 		List<EWorker> workerList = workerService.findAll();
+		model.addAttribute("workerList",workerList);
+		
+		return "admin/dashboard";
+	}
+	
+	/* WorkerSearch */
+	@PostMapping("/worker/search")
+	public String searchWorker(
+			Model model,
+			@RequestParam String keyword) {
+		
+		setPageInfo(model,"Worker","worker");
+		
+		List<EWorker> workerList = 
+				workerService.WorkerSearch(keyword);
+		
 		model.addAttribute("workerList",workerList);
 		
 		return "admin/dashboard";

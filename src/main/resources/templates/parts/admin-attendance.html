@@ -12,17 +12,17 @@
 				<h2>勤怠管理</h2>
 			</div>
 			<div class="search-toolbar">
-				<form action="">
+				<form th:action="@{/admin/attendance/search}" method="post">
 					<div class="form-toolbar">
 						<label class="text-center">日付</label>
-						<input type="date">
+						<input type="date" name="checkDate">
 					</div>
 					<div class="form-toolbar">
 						<label>社員番号</label>
-						<input type="text">
+						<input type="text" name="workerNo">
 					</div>
 					<div class="form-toolbar">
-						<button class="btn-toolbar" type="button">検索</button>
+						<button class="btn-toolbar" type="submit">検索</button>
 					</div>
 				</form>
 			</div>
