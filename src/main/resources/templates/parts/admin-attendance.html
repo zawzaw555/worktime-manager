@@ -12,14 +12,24 @@
 				<h2>勤怠管理</h2>
 			</div>
 			<div class="search-toolbar">
-				<form th:action="@{/admin/attendance/search}" method="post">
+				<form th:action="@{/admin/attendance/search}" 
+					  th:object="${searchForm}"
+					  method="post">
 					<div class="form-toolbar">
 						<label class="text-center">日付</label>
-						<input type="date" name="checkDate">
+						<input type="date" name="checkDate" th:field="*{checkDate}">
+					</div>
+					<div class="text-danger ms-4"
+							 th:if="${#fields.hasErrors('checkDate')}"
+							 th:errors="*{checkDate}">
 					</div>
 					<div class="form-toolbar">
 						<label>社員番号</label>
-						<input type="text" name="workerNo">
+						<input type="text" name="workerNo" th:field="*{workerNo}">
+					</div>
+					<div class="text-danger ms-4"
+							 th:if="${#fields.hasErrors('workerNo')}"
+							 th:errors="*{workerNo}">
 					</div>
 					<div class="form-toolbar">
 						<button class="btn-toolbar" type="submit">検索</button>
