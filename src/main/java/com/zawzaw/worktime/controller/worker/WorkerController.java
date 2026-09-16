@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.zawzaw.worktime.model.dto.WorkingUserDto;
 import com.zawzaw.worktime.service.WorkTimeService;
+import com.zawzaw.worktime.workervalidation.AttendanceForm;
+import com.zawzaw.worktime.workervalidation.CheckOutForm;
 
 import lombok.RequiredArgsConstructor;
 
@@ -34,7 +36,10 @@ public class WorkerController {
 		addWorkingUsers(model);
 		model.addAttribute("mode","attendance");
 		model.addAttribute("modeout","tocheckout");
-		
+		model.addAttribute(
+		        "attendanceForm",
+		        new AttendanceForm()
+		    );
 		return "worker/home";
 	}
 	
@@ -48,6 +53,7 @@ public class WorkerController {
 		WorkingUserDto selectedWorker =
 				workTimeService.findTodayWorkingUserById(id);
 		model.addAttribute("selectedWorker",selectedWorker);
+		model.addAttribute("checkOutForm", new CheckOutForm());
 		model.addAttribute("mode","leave");
 		model.addAttribute("modein","tocheckin");
 		

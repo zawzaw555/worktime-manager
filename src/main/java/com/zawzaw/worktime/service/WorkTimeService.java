@@ -2,9 +2,11 @@ package com.zawzaw.worktime.service;
 
 import java.util.List;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.zawzaw.worktime.mapper.WorkTimeMapper;
+import com.zawzaw.worktime.mapper.WorkerMapper;
 import com.zawzaw.worktime.model.dto.WorkingUserDto;
 import com.zawzaw.worktime.model.entity.EWorkTime;
 import com.zawzaw.worktime.model.entity.EWorker;
@@ -15,7 +17,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class WorkTimeService {
 	
+	private final WorkerMapper workerMapper;
 	private final WorkTimeMapper workTimeMapper;
+	private final PasswordEncoder passwordEncoder;
 	
 	public List<WorkingUserDto> findTodayWorkingUsers() {
 		return workTimeMapper.findTodayWorkingUsers();
@@ -31,7 +35,7 @@ public class WorkTimeService {
 		if (worker == null) {
 			return false;
 		}
-		if (!worker.getPassword().equals(password)) {
+		if (!passwordEncoder.matches(password, worker.getPassword())) {
 			return false;
 		}
 		
@@ -45,7 +49,26 @@ public class WorkTimeService {
 		return true;
 	}
 	
-	public int updateCheckOut(Long workerId) {
-		return workTimeMapper.updateCheckOut(workerId);
+	public boolean updateCheckOut(
+						Long id,
+						String password) {
+		EWorker worker = workerMapper.findWorkerById(id);
+		if (worker == null) {
+			return false;
+		}
+		if (!passwordEncoder.matches(
+								password, 
+								worker.getPassword())) {
+			System.out.println("input password = " + password);
+			System.out.println("db password = " + worker.getPassword());
+			System.out.println(
+			    "matches = " +
+			    passwordEncoder.matches(password, worker.getPassword())
+			);
+			return false;
+		}
+		
+		workTimeMapper.updateCheckOut(id);
+		return true;
 	}
 }

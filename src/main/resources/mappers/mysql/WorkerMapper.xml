@@ -30,7 +30,8 @@
 			id,
 			worker_no AS workerNo,
 			name,
-			email
+			email,
+			password
 		FROM worker
 		WHERE id = #{id}
 	</select>
