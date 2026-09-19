@@ -10,6 +10,7 @@ import com.zawzaw.worktime.mapper.WorkerMapper;
 import com.zawzaw.worktime.model.dto.WorkingUserDto;
 import com.zawzaw.worktime.model.entity.EWorkTime;
 import com.zawzaw.worktime.model.entity.EWorker;
+import com.zawzaw.worktime.workervalidation.CheckInResult;
 
 import lombok.RequiredArgsConstructor;
 
@@ -29,24 +30,24 @@ public class WorkTimeService {
 		return workTimeMapper.findTodayWorkingUserById(id);
 	}
 	
-	public boolean insertCheckIn(String workerNo,String password) {
+	public CheckInResult insertCheckIn(String workerNo,String password) {
 		EWorker worker = workTimeMapper.findWorkerByWorkerNo(workerNo);
 		
 		if (worker == null) {
-			return false;
+			return CheckInResult.WORKER_NOT_FOUND;
 		}
 		if (!passwordEncoder.matches(password, worker.getPassword())) {
-			return false;
+			return CheckInResult.WRONG_PASSWORD;
 		}
 		
 		EWorkTime working = workTimeMapper.selectWorking(worker.getId());
 		
 		if (working != null) {
-			return false;
+			return CheckInResult.ALREADY_WORKING;
 		}
 		workTimeMapper.insertCheckIn(worker.getId());
 		
-		return true;
+		return CheckInResult.SUCCESS;
 	}
 	
 	public boolean updateCheckOut(
@@ -59,16 +60,11 @@ public class WorkTimeService {
 		if (!passwordEncoder.matches(
 								password, 
 								worker.getPassword())) {
-			System.out.println("input password = " + password);
-			System.out.println("db password = " + worker.getPassword());
-			System.out.println(
-			    "matches = " +
-			    passwordEncoder.matches(password, worker.getPassword())
-			);
 			return false;
 		}
 		
 		workTimeMapper.updateCheckOut(id);
 		return true;
 	}
+	
 }

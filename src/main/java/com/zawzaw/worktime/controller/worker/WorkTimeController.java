@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.zawzaw.worktime.model.dto.WorkingUserDto;
 import com.zawzaw.worktime.service.WorkTimeService;
 import com.zawzaw.worktime.workervalidation.AttendanceForm;
+import com.zawzaw.worktime.workervalidation.CheckInResult;
 import com.zawzaw.worktime.workervalidation.CheckOutForm;
 
 import jakarta.validation.Valid;
@@ -38,13 +39,42 @@ public class WorkTimeController {
 						Model model,
 						@Valid @ModelAttribute("attendanceForm") AttendanceForm attendanceForm,
 						BindingResult result) {
+		
+	    if (!result.hasErrors()) {
+		    	CheckInResult checkInResult = workTimeService
+					.insertCheckIn(
+							attendanceForm.getWorkerNo(), 
+							attendanceForm.getPassword()
+					);
+		    	// 社員番号を確認
+		    	if (checkInResult == CheckInResult.WORKER_NOT_FOUND) {
+		    			result.rejectValue(
+		    					"workerNo",
+		    					"workerNo.invalid",
+		    					"社員番号が正しくありません"
+		    				);
+		    	} else if (checkInResult == CheckInResult.WRONG_PASSWORD) {
+		    			result.rejectValue(
+		    					"password",
+		    					"password.invalid",
+		    					"パスワードが正しくありません"
+		    			);
+		    	} else if (checkInResult == CheckInResult.ALREADY_WORKING) {
+		    			result.rejectValue(
+		    					"alreadyWorking",
+		    					"既に出勤しています"
+		    			);
+		    	}
+	    }
+
+	    // 未入力チェック
 	    if (result.hasErrors()) {
 	    	addWorkingUsers(model);
 			model.addAttribute("mode","attendance");
 			model.addAttribute("modeout","tocheckout");
 	    	return "worker/home";
 	    }
-		workTimeService.insertCheckIn(attendanceForm.getWorkerNo(),attendanceForm.getPassword());
+	    
 		return "redirect:/worker/home";
 	}
 	
