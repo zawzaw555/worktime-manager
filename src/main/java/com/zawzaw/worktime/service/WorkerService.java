@@ -7,6 +7,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.zawzaw.worktime.mapper.WorkerMapper;
@@ -20,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 public class WorkerService {
 	
 	private final WorkerMapper workerMapper;
+	private final PasswordEncoder passwordEncoder;
 	
 	/*　ホームページ */
 	public List<EWorker> findAll() {
@@ -96,6 +98,8 @@ public class WorkerService {
 	/* 社員管理ページ */
 	/* insert worker signup */
 	public void workerSignup(EWorker worker) {
+		String encodedPassword = passwordEncoder.encode(worker.getPassword());
+		worker.setPassword(encodedPassword);
 		workerMapper.insertWorkerSignup(worker);
 	}
 	
