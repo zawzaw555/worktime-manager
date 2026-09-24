@@ -61,7 +61,8 @@ public class WorkTimeController {
 		    			);
 		    	} else if (checkInResult == CheckInResult.ALREADY_WORKING) {
 		    			result.rejectValue(
-		    					"alreadyWorking",
+		    					"workerNo",
+		    					"workerNo.alreadyWorking",
 		    					"既に出勤しています"
 		    			);
 		    	}
