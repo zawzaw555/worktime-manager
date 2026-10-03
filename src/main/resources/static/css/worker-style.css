@@ -159,12 +159,16 @@ body {
 .worker-dashboard {
 	display: grid;
 	grid-template-columns: minmax(360px, 0.6fr) minmax(280px, 400px);
-	gap: 62px;
+	gap: 32px;
 	justify-content: center;
 	align-items: start;
 }
 .worker-wrapper .card {
 	width: 100%;
+}
+.worker-dashboard .worker-wrapper {
+	min-height: 0;
+	display: block;
 }
 .work-action-card,
 .attendance-panel {
