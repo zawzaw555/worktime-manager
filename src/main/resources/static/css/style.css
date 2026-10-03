@@ -1,0 +1,30 @@
+.login-wrapper {
+	display: flex;
+	justify-content: center;
+	min-height: 75vh;
+	align-items: center;
+}
+
+.input-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.input-control label {
+    width: 140px;
+    box-sizing: border-box;
+    text-align: left;
+    font-size: 18px;
+    padding: 6px 10px;
+    margin-bottom: 10px;
+    background-color: rgb(113, 176, 222);
+    border-radius: 5px;
+}
+
+.input-control input {
+    width: 200px;
+    height: 38px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}

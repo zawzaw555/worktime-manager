@@ -3,16 +3,13 @@
 	xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
+<meta name="viewpoit" content="width=device-width, initial-scale=1,shrink-to-fit=no">
 <!-- 共通CSS -->
 <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.8/css/bootstrap.min.css}">
-<link rel="stylesheet" th:href="@{/css/worker-style.css}">
-<link rel="stylesheet" th:href="@{/css/admin-style.css}">
+<link rel="stylesheet" th:href="@{/css/style.css}">
 <!-- 共通JS -->
 <script th:src="@{/webjars/bootstrap/5.3.8/js/bootstrap.bundle.min.js}" defer></script>
-<!-- 共通Fontawesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/fontawesome.min.css" integrity="sha512-SMQ1DwSGiIDyNoXdQae7kUBADdtQa8Xsb3LxBxzAXExZNCCH/36yQSpZSYo1c6ckFshd1iMp9eD9+s9+tdhmyg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<title th:text="${pageTitle}">Layout</title>
+<title>Layout</title>
 </head>
 <body>
 
@@ -20,6 +17,12 @@
 	<nav layout:replace="~{layout/header::header-content}"></nav>
 	
 	<!-- contents -->
-	<div layout:fragment="content"></div>
+	<div class="container">
+		<div class="row text-center justify-content-center">
+			<div class="col-10">
+				<div layout:fragment="content"></div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

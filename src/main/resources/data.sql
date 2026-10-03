@@ -1,32 +1,25 @@
-INSERT INTO common_login (
-	user_id,
-	password,
-	role
-) VALUES 
-('admin','$2a$10$SRtXMWCwTwVFK0ZbKXAnWuxYl2QytRFbmDJ/iGdyfVqWDM.jjHase','ADMIN'),
-('worker','$2a$10$1fADdXvbMtU2gx0nOzzEWexyw9x/zK9pMwGLwnA53MmQSZz.6GLv6','WORKER');
-
 INSERT INTO worker (
-    worker_no,
+    employee_no,
     name,
     email,
-    password
-) VALUES 
-(
-    'worker01',
+    password,
+    role
+) VALUES (
+    'EMP001',
     '山田太郎',
     'yamada@example.com',
-    '$2a$10$gf29fjgX/lg2IZL5iDRWPubik1n/aAKQCeYmcwX/7fcbO89.YMKIm'
-),
-(
-    'worker02',
-    '田中太郎',
-    'tanaka@example.com',
-    '$2a$10$gf29fjgX/lg2IZL5iDRWPubik1n/aAKQCeYmcwX/7fcbO89.YMKIm'
-),
-(
-    'worker03',
-    '佐藤太郎',
-    'satou@example.com',
-    '$2a$10$gf29fjgX/lg2IZL5iDRWPubik1n/aAKQCeYmcwX/7fcbO89.YMKIm'
+    'password',
+    'USER'
+);
+
+INSERT INTO work_time (
+    worker_id,
+    check_date,
+    check_in,
+    check_out
+) VALUES (
+    1,
+    '2026-07-30',
+    '2026-07-30 09:00:00',
+    '2026-07-30 18:00:00'
 );
