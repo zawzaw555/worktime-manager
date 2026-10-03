@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+<head>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="home-wrapper">
+			<aside class="sidebar">
+				<div class="sidebar-title">
+					<h2>管理画面</h2>
+				</div>
+				<ul>
+					<li>
+						<a th:href="@{/admin/home}" th:classappend="${mode == 'home'} ? ' active '">ホーム</a>
+					</li>
+					<li>
+						<a th:href="@{/admin/worker}" th:classappend="${mode == 'worker'} ? ' active '">社員管理</a>
+					</li>
+					<li>
+						<a th:href="@{/admin/attendance}" th:classappend="${mode == 'attendance'} ? ' active '">勤怠管理</a>
+					</li>
+				</ul>
+			</aside>
+			<main class="main-container">
+				<section th:if="${mode == 'home'}">
+					<div th:replace="~{parts/admin-home :: home-content}"></div>
+				</section>
+				<section th:if="${mode == 'worker'}">
+					<div th:replace="~{parts/admin-worker :: worker-content}"></div>
+				</section>
+				<section th:if="${mode == 'attendance'}">
+					<div th:replace="~{parts/admin-attendance :: attendance-content}"></div>
+				</section>
+				<section th:if="${mode == 'signup'}">
+					<div th:replace="~{parts/admin-signup :: signup-content}"></div>
+				</section>
+				<section th:if="${mode == 'edit'}">
+					<div th:replace="~{parts/admin-edit :: edit-content}"></div>
+				</section>
+				<section th:if="${mode == 'detail'}">
+					<div th:replace="~{parts/admin-detail :: detail-content}"></div>
+				</section>
+			</main>
+		</div>
+	</div>
+</body>
+</html>

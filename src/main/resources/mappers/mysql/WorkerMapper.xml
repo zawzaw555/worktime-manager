@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zawzaw.worktime.mapper.WorkerMapper">
+	<resultMap type="com.zawzaw.worktime.model.entity.EWorker" id="workerResultMap">
+		<result column="worker_no" property="workerNo"/>
+		<result column="name" property="name"/>
+		<result column="email" property="email"/>
+		<result column="password" property="password"/>
+	</resultMap>
+	<select id="countByWorkerNo"
+			resultType="int">
+		SELECT COUNT(*)
+		FROM worker
+		WHERE worker_no = #{workerNo}
+	</select>
+	
+	<select id="countByEmail"
+			resultType="int">
+		SELECT COUNT(*)
+		FROM worker
+		WHERE email = #{email}
+	</select>
+	
+	<select id="findWorkerById"
+			resultType="com.zawzaw.worktime.model.entity.EWorker">
+		SELECT
+			id,
+			worker_no AS workerNo,
+			name,
+			email,
+			password
+		FROM worker
+		WHERE id = #{id}
+	</select>
+	
+	<select id="findByNameOrWorkerNo"
+			resultType="com.zawzaw.worktime.model.entity.EWorker">
+		SELECT
+			id,
+			worker_no AS workerNo,
+			name,
+			email
+		FROM worker
+		WHERE worker_no = #{keyword}
+			OR name LIKE CONCAT('%',#{keyword},'%')
+	</select>
+	
+	<update id="updateWorker">
+		UPDATE worker
+		SET
+			name = #{name},
+			email = #{email}
+		WHERE id = #{id}
+	</update>
+	
+	<delete id="deleteWorker">
+		DELETE FROM worker
+		WHERE id = #{id}
+	</delete>
+	
+	<select id="findAll" resultMap="workerResultMap">
+		SELECT *
+		FROM worker
+		ORDER BY worker_no
+	</select>
+	
+	<select id="findTodayAttendance"
+			resultType="com.zawzaw.worktime.model.dto.AdminAttendanceDto">
+		SELECT
+			w.worker_no AS workerNo,
+			w.name AS workerName,
+			wt.check_in AS checkIn,
+			wt.check_out AS checkOut,
+			bt.break_start AS breakStart,
+			bt.break_end AS breakEnd
+			
+		FROM work_time wt
+		
+		JOIN worker w
+			ON wt.worker_id = w.id
+			
+		LEFT JOIN break_time bt
+			ON bt.work_time_id = wt.id
+		WHERE wt.check_date =CURDATE()
+		
+		ORDER BY
+			w.id,
+			wt.check_in
+	</select>
+	
+	<select id="findAdminAttendance"
+			resultType="com.zawzaw.worktime.model.dto.AdminAttendanceDto">
+		SELECT
+			w.worker_no AS workerNo,
+			w.name AS workerName,
+			wt.check_date AS checkDate,
+			wt.check_in AS checkIn,
+			wt.check_out AS checkOut,
+			bt.break_start AS breakStart,
+			bt.break_end AS breakEnd
+			FROM work_time wt
+			JOIN worker w
+				ON wt.worker_id = w.id
+			LEFT JOIN break_time bt
+				ON bt.work_time_id = wt.id
+			ORDER BY wt.check_date DESC, wt.check_in DESC
+	</select>
+	
+	<select id="searchWorkerAttendance"
+			resultType="com.zawzaw.worktime.model.dto.AdminAttendanceDto">
+		SELECT
+			w.worker_no AS workerNo,
+			w.name AS workerName,
+			wt.check_date AS checkDate,
+			wt.check_in AS checkIn,
+			wt.check_out AS checkOut,
+			bt.break_start AS breakStart,
+			bt.break_end AS breakEnd
+			FROM work_time wt
+			
+			JOIN worker w
+				ON wt.worker_id = w.id
+			LEFT JOIN break_time bt
+				ON bt.work_time_id = wt.id
+			WHERE wt.check_date = #{checkDate}
+				AND w.worker_no = #{workerNo}
+			
+			ORDER BY wt.check_date DESC, wt.check_in DESC
+	</select>
+	
+	<insert id="insertWorkerSignup">
+		INSERT INTO worker(
+			worker_no,
+			name,
+			email,
+			password
+		)
+		VALUES (
+			#{workerNo},
+			#{name},
+			#{email},
+			#{password}
+		)
+		
+	</insert>
+</mapper>
