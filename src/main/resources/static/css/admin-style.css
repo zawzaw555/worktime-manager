@@ -12,7 +12,7 @@
   	--color-yellow: rgb(217, 221, 31);
   	--color-green: rgb(64, 195, 51);
   	--color-blue: rgb(42, 84, 174);
-  	--color-red: rgb(192, 32, 41);
+  	--color-red: rgb(184, 75, 81);
   	
   	--color-border: rgb(168, 172, 176);
   	--color-border-shadow: rgb(67, 118, 91);
@@ -222,6 +222,10 @@
     justify-self: center;
     margin-left: 0;
 }
+.wrapper-btn input.input-bg {
+	background-color: var(--color-red);
+	color: white;
+}
 .search-toolbar button,
 .toolbar button {
 	padding: 2px 10px;
@@ -233,6 +237,14 @@
 .toolbar button:hover {
 	font-weight: 600;
 	box-shadow: 0 4px 10px var(--color-border-shadow);
+}
+.table-change {
+	display: flex;
+	justify-content: end;
+	margin-bottom: 12px;
+}
+.table-change input{
+	margin-right: 4px;
 }
 @media (max-width: 932px) {
 	.table-wrapper {

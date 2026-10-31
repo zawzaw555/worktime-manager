@@ -8,6 +8,7 @@ import lombok.Data;
 @Data
 public class AdminAttendanceDto {
 	
+	private Long workTimeId;
 	private String workerNo;
 	private String workerName;
 	
@@ -18,6 +19,11 @@ public class AdminAttendanceDto {
 	private LocalTime breakStart;
 	private LocalTime breakEnd;
 	
+	// 計算用
+	private long breakMinutes;
+	private long workingMinutes;
+	
+	// 表示用
 	private String breakTime;
 	private String workingTime;
 }

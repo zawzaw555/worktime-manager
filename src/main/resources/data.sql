@@ -3,7 +3,9 @@ INSERT INTO common_login (
 	password,
 	role
 ) VALUES 
+/* 'admin','admin123' */
 ('admin','$2a$10$SRtXMWCwTwVFK0ZbKXAnWuxYl2QytRFbmDJ/iGdyfVqWDM.jjHase','ADMIN'),
+/* 'worker','worker123' */
 ('worker','$2a$10$1fADdXvbMtU2gx0nOzzEWexyw9x/zK9pMwGLwnA53MmQSZz.6GLv6','WORKER');
 
 INSERT INTO worker (

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title>Attend-Edit</title>
+</head>
+<body>
+	<div th:fragment="attend-edit-content">
+		<div class="worker-frame">
+			<div class="signup-wrapper">
+				<div class="card bg-light rounded-4">
+					<div class="card-body">
+						<form th:action="@{/admin/attendance/update/{id}(id=${workTimeId})}" 
+							  method="post">
+							<h2>社員勤怠編集</h2>
+							<div class="input-group">
+								<input type="hidden">
+								<div class="input-label">
+									<label>社員 ID</label>
+								</div>
+								<div class="input-control">
+									<h5 th:text="${attendance.workerNo}"></h5>
+								</div>
+								<div class="input-label">
+									<label>社員名</label>
+								</div>
+								<div class="input-control">
+									<input type="text" th:value="${attendance.workerName}" readonly="readonly">
+								</div>
+								<div class="input-label mt-1">
+									<label>出勤時</label>
+								</div>
+								<div class="input-control">
+									<input type="time" name="checkIn" th:value="${attendance.checkIn}" required>
+								</div>
+								<div class="input-label mt-1">
+									<label>退勤時</label>
+								</div>
+								<div class="input-control">
+									<input type="time" name="checkOut" th:value="${attendance.checkOut}" required>
+								</div>
+								<div class="input-label mt-1">
+									<label>休憩時</label>
+								</div>
+								<div class="input-control">
+									<input type="time" name="breakTime" th:value="${attendance.breakTime}">
+								</div>
+								<div class="wrapper-btn mt-1">
+									<input type="submit" 
+											value="削除"
+											th:formaction="@{/admin/attendance/delete/{id}(id=${workTimeId})}" 
+											class="mb-1 input-bg">
+									<input type="submit" 
+											value="更新"
+											th:formaction="@{/admin/attendance/update/{id}(id=${workTimeId})}" 
+											class="mb-1"><br>
+								</div>
+								<a th:href="@{/admin/attendance}">社員管理ページへ</a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
