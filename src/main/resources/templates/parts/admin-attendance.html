@@ -36,8 +36,21 @@
 					</div>
 				</form>
 			</div>
-			<div class="table-wrapper">			
-				<table class="table-list">
+			<div class="table-change">
+				<form action="" method="get">
+					<label>
+						<input type="radio" name="period" value="today" checked>
+						本日
+					</label>
+					<label>
+						<input type="radio" name="period" value="month">
+						月
+					</label>
+				</form>
+			</div>
+			<div class="table-wrapper">	
+				<!-- 本日のテーブル -->		
+				<table id="today-table" class="table-list">
 					<thead>
 						<tr>
 							<th>No.</th>
@@ -72,8 +85,45 @@
                 			<td th:text="${attendance.breakTime}"></td>
                 			<td th:text="${attendance.workingTime}"></td>
                 			<td>
-                				<a href="#">編集</a>
+                				<a th:href="@{/admin/attendance/edit/{id}(id = ${attendance.workTimeId})}">編集</a>
                 			</td>
+            			</tr>
+        			</tbody>
+				</table>
+				<!-- 一月のテーブル:最初非表示 -->
+				<table id="month-table" class="table-list" hidden="hidden">
+					<thead>
+						<tr>
+							<th>No.</th>
+							<th>日付</th>
+							<th>社員番号</th>
+							<th>社員名</th>
+							<th>出勤時</th>
+							<th>退勤時</th>
+							<th>休憩時間</th>
+							<th>実働時間</th>
+						</tr>
+					</thead>
+					<tbody>
+            			<tr th:each="attendance , stat : ${monthlyAttendanceLists}">
+            				<td th:text="${stat.count}"></td>
+            				<td th:text="${attendance.checkDate}"></td>
+                			<td th:text="${attendance.workerNo}"></td>
+                			<td th:text="${attendance.workerName}"></td>
+                			<td th:text="${#temporals.format(attendance.checkIn,'HH:mm')}"></td>
+                			<td>
+                				<span
+                				  	  th:if="${attendance.checkOut == null
+                				  			and attendance.checkIn != null}">
+                				  		-
+                				</span>
+                				<span
+               				  		  th:if="${attendance.checkOut != null}"
+               				  		  th:text="${attendance.checkOut}">
+                				</span>
+                			</td>
+                			<td th:text="${attendance.breakTime}"></td>
+                			<td th:text="${attendance.workingTime}"></td>
             			</tr>
         			</tbody>
 				</table>

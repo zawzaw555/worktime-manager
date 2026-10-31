@@ -94,6 +94,7 @@
 	<select id="findAdminAttendance"
 			resultType="com.zawzaw.worktime.model.dto.AdminAttendanceDto">
 		SELECT
+			wt.id AS workTimeId,
 			w.worker_no AS workerNo,
 			w.name AS workerName,
 			wt.check_date AS checkDate,
@@ -101,13 +102,52 @@
 			wt.check_out AS checkOut,
 			bt.break_start AS breakStart,
 			bt.break_end AS breakEnd
-			FROM work_time wt
-			JOIN worker w
-				ON wt.worker_id = w.id
-			LEFT JOIN break_time bt
-				ON bt.work_time_id = wt.id
-			ORDER BY wt.check_date DESC, wt.check_in DESC
+		FROM work_time wt
+		JOIN worker w
+			ON wt.worker_id = w.id
+		LEFT JOIN break_time bt
+			ON bt.work_time_id = wt.id
+		ORDER BY wt.check_date DESC, wt.check_in DESC
 	</select>
+	
+	<select id="findEditAttendance"
+			resultType="com.zawzaw.worktime.model.dto.AdminAttendanceDto">
+	SELECT
+			wt.id AS workTimeId,
+			w.worker_no AS workerNo,
+			w.name AS workerName,
+			wt.check_date AS checkDate,
+			wt.check_in AS checkIn,
+			wt.check_out AS checkOut,
+			bt.break_start AS breakStart,
+			bt.break_end AS breakEnd
+		FROM work_time wt
+		JOIN worker w
+			ON wt.worker_id = w.id
+		LEFT JOIN break_time bt
+			ON bt.work_time_id = wt.id
+		WHERE wt.id = #{id}
+		ORDER BY bt.break_start
+	</select>
+	
+	<delete id="deleteBreaksByWorkTimeId">
+		DELETE FROM break_time
+		WHERE work_time_id = #{id}
+	
+	</delete>
+	
+	<delete id="deleteWorkTime">
+		DELETE FROM work_time
+		WHERE id = #{id}
+	</delete>
+	
+	<update id="updateAttendance">
+		UPDATE work_time
+		SET
+			check_in = #{checkIn},
+			check_out = #{checkOut}
+		WHERE id = #{id}
+	</update>
 	
 	<select id="searchWorkerAttendance"
 			resultType="com.zawzaw.worktime.model.dto.AdminAttendanceDto">

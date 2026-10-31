@@ -1,6 +1,7 @@
 package com.zawzaw.worktime.mapper;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -40,7 +41,20 @@ public interface WorkerMapper {
 	/* 勤怠管理ページ */
 	List<AdminAttendanceDto> findAdminAttendance();
 	
+	List<AdminAttendanceDto> findEditAttendance(
+			@Param("id") Long id);
+	
+	int deleteBreaksByWorkTimeId(@Param("id") Long id);
+	
+	int deleteWorkTime(@Param("id") Long id);
+	
 	List<AdminAttendanceDto> searchWorkerAttendance(
 			@Param("checkDate") LocalDate checkDate,
 			@Param("workerNo") String workerNo);
+	
+	int updateAttendance(
+			@Param("id") Long id,
+			@Param("checkIn") LocalTime checkIn,
+			@Param("checkOut") LocalTime checkOut
+		);
 }
