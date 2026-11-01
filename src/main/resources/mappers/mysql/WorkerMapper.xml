@@ -72,8 +72,10 @@
 		SELECT
 			w.worker_no AS workerNo,
 			w.name AS workerName,
+			wt.id AS workTimeId,
 			wt.check_in AS checkIn,
 			wt.check_out AS checkOut,
+			wt.check_date AS checkDate,
 			bt.break_start AS breakStart,
 			bt.break_end AS breakEnd
 			
@@ -88,7 +90,10 @@
 		
 		ORDER BY
 			w.id,
-			wt.check_in
+			wt.check_in,
+			wt.id,
+			bt.break_start,
+			bt.id
 	</select>
 	
 	<select id="findAdminAttendance"
@@ -154,6 +159,7 @@
 		SELECT
 			w.worker_no AS workerNo,
 			w.name AS workerName,
+			wt.id AS workTimeId,
 			wt.check_date AS checkDate,
 			wt.check_in AS checkIn,
 			wt.check_out AS checkOut,

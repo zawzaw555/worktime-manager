@@ -33,37 +33,37 @@ public class WorkerService {
 	}
 	
 	public List<AdminAttendanceDto> findTodayAttendance() {
-		List<AdminAttendanceDto> homeLists = 				
-									workerMapper.findTodayAttendance();
-		Map<String,Long> totalMinutesMap = new LinkedHashMap<>();
-		Map<String,AdminAttendanceDto> workerMap = new LinkedHashMap<>();
-			for (AdminAttendanceDto attendance : homeLists) {
-				long workingMinutes = calcWorkingMinutes(attendance);
-				// 同じ社員番号なら勤務時間加算
-				totalMinutesMap.merge(
-							attendance.getWorkerNo(),
-							workingMinutes,
-							Long::sum
-				);
-				// 同じ社員なら後のデータ (最新状態) を残す
-				workerMap.put(
-						attendance.getWorkerNo(),
-						attendance
-				);
-				attendance.setWorkingTime(
-						formatMinutes(workingMinutes)
-				);
-			}
-			for (Map.Entry<String, AdminAttendanceDto> entry
-					: workerMap.entrySet()) {
-				String workerNo = entry.getKey();
-				AdminAttendanceDto attendance = entry.getValue();
-				long totalMinutes = totalMinutesMap.get(workerNo);
-				attendance.setWorkingTime(
-						formatMinutes(totalMinutes)
-				);
-			}
-		return new ArrayList<>(workerMap.values());
+		List<AdminAttendanceDto> rows = 				
+					workerMapper.findTodayAttendance();
+		
+		Map<String,AdminAttendanceDto> latestByWorker = 
+				new LinkedHashMap<>();
+		
+		// 社員ごとの最新の状態を残す
+		for (AdminAttendanceDto row : rows) {
+			latestByWorker.put(row.getWorkerNo(), row);
+		}
+		
+		Map<String,Long> totalMinutes = new LinkedHashMap<>();
+		
+		for(AdminAttendanceDto work : summarizeByWork(rows)) {
+			totalMinutes.merge(
+					work.getWorkerNo(),
+					work.getWorkingMinutes(),
+					Long::sum
+			);
+		}
+		
+		for(AdminAttendanceDto worker : latestByWorker.values()) {
+			worker.setWorkingTime(
+						formatMinutes(
+								totalMinutes.getOrDefault(
+										worker.getWorkerNo(), 0L)
+						)
+			);
+		}
+		
+		return new ArrayList<>(latestByWorker.values());
 	}
 	
 	public long countTodayAttendance() {
@@ -316,6 +316,13 @@ public class WorkerService {
 	public void updateAttendance(Long id, AttendanceEditForm form) {
 
 	    // 同日内の勤務として、時刻の前後を確認
+	    if (form.getCheckIn() == null || form.getCheckOut() == null) {
+	        throw new ResponseStatusException(
+	                HttpStatus.BAD_REQUEST,
+	                "出勤時刻と退勤時刻を入力してください"
+	        );
+	    }
+	    
 	    if (!form.getCheckOut().isAfter(form.getCheckIn())) {
 	        throw new ResponseStatusException(
 	                HttpStatus.BAD_REQUEST,

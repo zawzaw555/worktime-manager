@@ -14,6 +14,7 @@ public class AttendanceEditForm {
 	@DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
 	private LocalTime checkIn;
 	
+	@NotNull(message = "退勤時刻を入力してください")
 	@DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
 	private LocalTime checkOut;
 }

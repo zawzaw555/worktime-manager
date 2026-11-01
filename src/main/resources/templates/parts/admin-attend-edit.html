@@ -44,7 +44,8 @@
 									<input type="submit" 
 											value="削除"
 											th:formaction="@{/admin/attendance/delete/{id}(id=${workTimeId})}" 
-											class="mb-1 input-bg">
+											class="mb-1 input-bg"
+											formnovalidate>
 									<input type="submit" 
 											value="更新"
 											th:formaction="@{/admin/attendance/update/{id}(id=${workTimeId})}" 

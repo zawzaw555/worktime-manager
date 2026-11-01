@@ -63,6 +63,10 @@ public class AdminAttendanceController {
 															searchForm.getCheckDate(),
 															searchForm.getWorkerNo());
 		model.addAttribute("attendanceLists",attendanceLists);
+		model.addAttribute(
+				"monthlyAttendanceLists",
+				workerService.findMonthlyDailyAttendance()
+		);
 		return "admin/dashboard";
 	}
 	
@@ -84,7 +88,6 @@ public class AdminAttendanceController {
 	@PostMapping("/attendance/delete/{id}")
 	public String postDeleteAttendance(@PathVariable Long id,Model model) {
 		workerService.deleteAttendance(id);
-		workerService.deleteWorker(id);
 		return "redirect:/admin/attendance";
 	}
 	

@@ -39,13 +39,43 @@
                 		<td th:text="${worker.workerNo}"></td>
                 		<td th:text="${worker.name}"></td>
                 		<td>
-                    		<a th:href="@{/admin/worker/detail/{id}(id = ${worker.id})}">詳細</a>
+                			<form th:action="@{/admin/worker/detail/{id}(id=${worker.id})}"
+      								method="post"
+      								class="d-inline">
+    								<button type="submit"
+            								class="ms-2"
+            								style="background: none; border: none; padding: 0;
+                   									color: var(--bs-link-color);
+                   									text-decoration: underline; cursor: pointer;">
+        									詳細
+    								</button>
+							</form>
                 		</td>
                 		<td>
-                			<a th:href="@{/admin/worker/edit/{id}(id = ${worker.id})}" class="ms-2">編集</a>
+                			<form th:action="@{/admin/worker/edit/{id}(id=${worker.id})}"
+      								method="post"
+      								class="d-inline">
+    								<button type="submit"
+            								class="ms-2"
+            								style="background: none; border: none; padding: 0;
+                   									color: var(--bs-link-color);
+                   									text-decoration: underline; cursor: pointer;">
+        									編集
+    								</button>
+							</form>
                 		</td>
                 		<td>
-                			<a th:href="@{/admin/worker/delete/{id}(id = ${worker.id})}" class="ms-2">削除</a>
+                			<form th:action="@{/admin/worker/delete/{id}(id=${worker.id})}"
+      								method="post"
+      								class="d-inline">
+    								<button type="submit"
+            								class="ms-2"
+            								style="background: none; border: none; padding: 0;
+                   									color: var(--bs-link-color);
+                   									text-decoration: underline; cursor: pointer;">
+        									削除
+    								</button>
+							</form>
                 		</td>
             		</tr>
         		</tbody>

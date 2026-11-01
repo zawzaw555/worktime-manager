@@ -101,7 +101,7 @@ public class AdminWorkerController {
 	}
 	
 	/* Admin -> worker edit */
-	@GetMapping("/worker/edit/{id}")
+	@PostMapping("/worker/edit/{id}")
 	public String editWorker(@PathVariable Long id,Model model) {
 		EWorker worker = workerService.findWorkerEdit(id);
 		model.addAttribute("worker",worker);
@@ -119,7 +119,7 @@ public class AdminWorkerController {
 	}
 	
 	/* Admin -> Worker Detail */
-	@GetMapping("/worker/detail/{id}")
+	@PostMapping("/worker/detail/{id}")
 	public String detailWorker(
 			Model model,
 			@PathVariable Long id) {
@@ -130,7 +130,7 @@ public class AdminWorkerController {
 	}
 	
 	/* Admin -> Worker Delete */
-	@GetMapping("/worker/delete/{id}")
+	@PostMapping("/worker/delete/{id}")
 	public String deleteWorker(
 			Model model,
 			@PathVariable Long id) {
