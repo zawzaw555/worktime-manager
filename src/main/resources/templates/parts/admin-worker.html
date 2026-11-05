@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title>Worker</title>
+</head>
+<body>
+	<div th:fragment="worker-content">
+		<div class="worker-frame">
+			<div class="worker-header">
+				<h2>社員管理</h2>
+			</div>
+			<div class="worker-toolbar">
+				<div class="toolbar">
+					<form th:action="@{/admin/worker/search}" method="post">
+						<input type="text"
+							   name="keyword"
+							   placeholder="社員番号・社員名で検索">
+						<button type="submit">検索</button>
+					</form>
+				</div>
+				<a th:href="@{/admin/signup}"><span><i class="fa-solid fa-plus fs-3"></i></span>新規社員登録</a>
+			</div>
+			<table class="table-list">
+				<thead>
+					<tr>
+						<th>No.</th>
+						<th>社員番号</th>
+						<th>社員名</th>
+						<th></th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+            		<tr th:each="worker ,stat : ${workerList}">
+                		<td th:text="${stat.count}"></td>
+                		<td th:text="${worker.workerNo}">
+                		<td>
+                			<span th:text="${worker.name}"></span>
+                			<small class="worker-status"
+                					th:classappend="${worker.isActive == true}
+                									? 'status-active' : 'status-inactive'"
+                					th:text="${worker.isActive == true}
+                							? '有効' : '無効'">
+                			</small>
+                		</td>
+                		<td>
+							<a th:href="@{/admin/worker/detail/{id}(id=${worker.id})}" class="ms-2 worker-link">詳細</a>
+                		</td>
+                		<td>
+							<a th:href="@{/admin/worker/edit/{id}(id=${worker.id})}" class="ms-2 worker-link">変種</a>
+                		</td>
+                		<td>
+                			<form th:action="@{/admin/worker/disable/{id}(id=${worker.id})}"
+      								method="post"
+      								class="d-inline">
+    								<button type="submit"
+            								class="ms-2 disable-worker-btn"
+            								th:disabled="${worker.isActive == false}">
+        									無効化
+    								</button>
+							</form>
+                		</td>
+            		</tr>
+        		</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+</html>
