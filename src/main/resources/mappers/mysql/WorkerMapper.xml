@@ -44,6 +44,7 @@
 			id,
 			worker_no AS workerNo,
 			name,
+			is_active AS isActive
 			email
 		FROM worker
 		WHERE is_active = TRUE 
