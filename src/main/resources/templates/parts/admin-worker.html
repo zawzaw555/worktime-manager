@@ -47,10 +47,10 @@
                 			</small>
                 		</td>
                 		<td>
-							<a th:href="@{/admin/worker/detail/{id}(id=${worker.id})}" class="ms-2">詳細</a>
+							<a th:href="@{/admin/worker/detail/{id}(id=${worker.id})}" class="ms-2 worker-link">詳細</a>
                 		</td>
                 		<td>
-							<a th:href="@{/admin/worker/edit/{id}(id=${worker.id})}" class="ms-2">変種</a>
+							<a th:href="@{/admin/worker/edit/{id}(id=${worker.id})}" class="ms-2 worker-link">変種</a>
                 		</td>
                 		<td>
                 			<form th:action="@{/admin/worker/disable/{id}(id=${worker.id})}"

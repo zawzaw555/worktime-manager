@@ -217,6 +217,9 @@
 	color: var(--color-border);
 	cursor: not-allowed;
 }
+.worker-link {
+	text-decoration: none;
+}
 
 /* attend-frame */
 .form-toolbar {
