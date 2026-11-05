@@ -103,3 +103,5 @@ http://localhost:8080/
 
 本番環境での利用を想定する場合は、
 `DROP TABLE` を削除する必要があります。
+
+`application.properties`の`spring.sql.init.mode`を`always`から`none`に変更する必要があります。
