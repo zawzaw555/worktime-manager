@@ -139,8 +139,8 @@ public class WorkerService {
 	}
 	
 	/* worker情報削除 */
-	public boolean deleteWorker(Long id) {
-		return workerMapper.deleteWorker(id) > 0;
+	public boolean disableWorker(Long id) {
+		return workerMapper.disableWorker(id) > 0;
 	}
 	
 	/* 勤怠管理ページ */

@@ -74,6 +74,7 @@
 		SELECT *
 		FROM worker
 		WHERE worker_no = #{workerNo}
+			AND is_active = TRUE
 	</select>
 	
 	<insert id="insertCheckIn">

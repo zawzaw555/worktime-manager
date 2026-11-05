@@ -14,4 +14,6 @@ public class EWorker {
 	private String email;
 	
 	private String password;
+	
+	private Boolean isActive;
 }

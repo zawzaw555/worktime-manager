@@ -36,7 +36,7 @@ public interface WorkerMapper {
 	
 	int updateWorker(EWorker worker);
 	
-	int deleteWorker(Long id);
+	int disableWorker(@Param("id") Long id);
 	
 	/* 勤怠管理ページ */
 	List<AdminAttendanceDto> findAdminAttendance();

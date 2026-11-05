@@ -36,44 +36,30 @@
 				<tbody>
             		<tr th:each="worker ,stat : ${workerList}">
                 		<td th:text="${stat.count}"></td>
-                		<td th:text="${worker.workerNo}"></td>
-                		<td th:text="${worker.name}"></td>
+                		<td th:text="${worker.workerNo}">
                 		<td>
-                			<form th:action="@{/admin/worker/detail/{id}(id=${worker.id})}"
-      								method="post"
-      								class="d-inline">
-    								<button type="submit"
-            								class="ms-2"
-            								style="background: none; border: none; padding: 0;
-                   									color: var(--bs-link-color);
-                   									text-decoration: underline; cursor: pointer;">
-        									詳細
-    								</button>
-							</form>
+                			<span th:text="${worker.name}"></span>
+                			<small class="worker-status"
+                					th:classappend="${worker.isActive == true}
+                									? 'status-active' : 'status-inactive'"
+                					th:text="${worker.isActive == true}
+                							? '無効' : '有効'">
+                			</small>
                 		</td>
                 		<td>
-                			<form th:action="@{/admin/worker/edit/{id}(id=${worker.id})}"
-      								method="post"
-      								class="d-inline">
-    								<button type="submit"
-            								class="ms-2"
-            								style="background: none; border: none; padding: 0;
-                   									color: var(--bs-link-color);
-                   									text-decoration: underline; cursor: pointer;">
-        									編集
-    								</button>
-							</form>
+							<a th:href="@{/admin/worker/detail/{id}(id=${worker.id})}" class="ms-2">詳細</a>
                 		</td>
                 		<td>
-                			<form th:action="@{/admin/worker/delete/{id}(id=${worker.id})}"
+							<a th:href="@{/admin/worker/edit/{id}(id=${worker.id})}" class="ms-2">変種</a>
+                		</td>
+                		<td>
+                			<form th:action="@{/admin/worker/disable/{id}(id=${worker.id})}"
       								method="post"
       								class="d-inline">
     								<button type="submit"
-            								class="ms-2"
-            								style="background: none; border: none; padding: 0;
-                   									color: var(--bs-link-color);
-                   									text-decoration: underline; cursor: pointer;">
-        									削除
+            								class="ms-2 disable-worker-btn"
+            								th:disabled="${worker.isActive == false}">
+        									無効化
     								</button>
 							</form>
                 		</td>

@@ -195,6 +195,28 @@
 	font-weight: 700;
 	color: var(--color-red);
 }
+.worker-status {
+	margin-left: 18px;
+	font-size: 12px;
+}
+.status-active {
+	color: #287a38;
+}
+.status-inactive {
+	color: #c62828;
+}
+.disable-worker-btn {
+	background: none;
+	border: none;
+	padding: 0;
+	color: var(--color-red);
+	text-decoration: none;
+	cursor: pointer;
+}
+.disable-worker-btn:disabled {
+	color: var(--color-border);
+	cursor: not-allowed;
+}
 
 /* attend-frame */
 .form-toolbar {

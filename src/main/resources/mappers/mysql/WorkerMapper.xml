@@ -9,7 +9,9 @@
 		<result column="name" property="name"/>
 		<result column="email" property="email"/>
 		<result column="password" property="password"/>
+		<result column="is_active" property="isActive"/>
 	</resultMap>
+	
 	<select id="countByWorkerNo"
 			resultType="int">
 		SELECT COUNT(*)
@@ -44,8 +46,11 @@
 			name,
 			email
 		FROM worker
-		WHERE worker_no = #{keyword}
-			OR name LIKE CONCAT('%',#{keyword},'%')
+		WHERE is_active = TRUE 
+			AND (
+				worker_no = #{keyword}
+				OR name LIKE CONCAT('%',#{keyword},'%')
+			)
 	</select>
 	
 	<update id="updateWorker">
@@ -56,10 +61,11 @@
 		WHERE id = #{id}
 	</update>
 	
-	<delete id="deleteWorker">
-		DELETE FROM worker
+	<update id="disableWorker">
+		UPDATE worker
+		SET is_active = FALSE
 		WHERE id = #{id}
-	</delete>
+	</update>
 	
 	<select id="findAll" resultMap="workerResultMap">
 		SELECT *
